@@ -1,0 +1,7 @@
+var CksProfileInfo = /** @class */ (function () {
+    function CksProfileInfo() {
+    }
+    return CksProfileInfo;
+}());
+export { CksProfileInfo };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJvZmlsZS1pbmZvLm1vZGVsLmpzIiwic291cmNlUm9vdCI6Im5nOi8vbmctY2hha2Fucy8iLCJzb3VyY2VzIjpbIm1vZGVsL3Byb2ZpbGUtaW5mby5tb2RlbC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUFBO0lBS0EsQ0FBQztJQUFELHFCQUFDO0FBQUQsQ0FBQyxBQUxELElBS0MiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgQ2tzUHJvZmlsZUluZm8ge1xuICBhY3RpdmVQcm9maWxlczogc3RyaW5nW107XG4gIHJpYmJvbkVudjogc3RyaW5nO1xuICBpblByb2R1Y3Rpb246IGJvb2xlYW47XG4gIHN3YWdnZXJFbmFibGVkOiBib29sZWFuO1xufVxuIl19

@@ -1,0 +1,182 @@
+/* ==========================================================================
+Developement Ribbon
+========================================================================== */
+.ribbon {
+  background-color: rgba(170, 0, 0, 0.5);
+  left: -3.5em;
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  overflow: hidden;
+  position: absolute;
+  top: 40px;
+  white-space: nowrap;
+  width: 15em;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.75;
+  a {
+    color: #fff;
+    display: block;
+    font-weight: 400;
+    margin: 1px 0;
+    padding: 10px 50px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 0 5px #444;
+    pointer-events: none;
+  }
+}
+/* ==========================================================================
+Sidebar styles
+========================================================================== */
+.sidebar {
+  position: fixed;
+  height: 100vh;
+  border-right: 0.0625em solid #c6cfd6;
+  width: 15.625em;
+  overflow: auto;
+  padding: 0;
+  background: #dbe2e6;
+  z-index: 100;
+}
+.sidebar-header {
+  padding: 0.625em;
+}
+.sidebar-content {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+}
+.sidebar-menu {
+  padding: 0;
+  margin: 0 0 1.5625em 0;
+  list-style: none;
+  a {
+    &:first-child {
+      span {
+        margin-left: 0.5em;
+        > span:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  fa-layers {
+    font-size: 1.5625em;
+    vertical-align: bottom;
+  }
+  > li {
+    border-bottom: 0.0625em solid transparent;
+    > a {
+      display: block;
+      font-weight: initial;
+      text-decoration: none !important;
+      color: #000 !important;
+      padding: 0.625em 0.625em 0.625em 0.8125em;
+      cursor: pointer;
+    }
+  }
+}
+.sidebar-sub-menu {
+  padding: 0;
+  margin: 0;
+  float: none;
+  background-color: transparent;
+  border-radius: inherit;
+  border: 0;
+  list-style: none;
+  > li {
+    display: flex;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    position: relative;
+    border-bottom: 0.0625em solid transparent;
+    > a {
+      display: flex;
+      position: relative;
+      align-self: center;
+      box-sizing: border-box;
+      overflow: hidden;
+      &:first-child {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        font-weight: initial;
+        text-decoration: none !important;
+        color: #000 !important;
+        padding: 0.625em 0.625em 0.625em 0.8125em;
+        cursor: pointer;
+      }
+      &.btn {
+        margin-right: 0.3125em;
+      }
+      &.btn-secondary {
+        color: #fff !important;
+        text-decoration: none !important;
+      }
+    }
+  }
+}
+/* ==========================================================================
+Navbar styles
+========================================================================== */
+.navbar {
+  position: fixed;
+  width: 100%;
+  padding: 0.125rem 1rem;
+  z-index: 1000;
+  ul.navbar-nav {
+    .nav-item {
+      margin-left: 0.5em;
+    }
+    @media screen and (max-width: 768px) {
+      .dropdown-menu {
+        position: static !important;
+        top: initial !important;
+        left: initial !important;
+        transform: none !important;
+      }
+    }
+  }
+  a.nav-link {
+    font-weight: 400;
+  }
+}
+.navbar-version {
+  font-size: 0.65em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.profile-image {
+  height: 1.75em;
+  width: 1.75em;
+}
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.navbar-brand {
+  height: 3.25rem;
+}
+.navbar-dark {
+  .navbar-brand {
+    color: #fff !important;
+  }
+}
+.logo-img {
+  height: 42px;
+  width: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.navbar-title {
+  vertical-align: middle;
+}
