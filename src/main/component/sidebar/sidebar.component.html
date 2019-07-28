@@ -1,0 +1,42 @@
+<div class="sidebar" *ngIf="isSidebarViewed | async">
+    <div class="sidebar-header">
+        <ng-template [ngTemplateOutlet]="headerTemplate"></ng-template>
+    </div>
+    <div class="sidebar-content">
+        <ng-template [ngTemplateOutlet]="contentTemplate || sidebarContent" [ngTemplateOutletContext]="{ items: menuItems }"> </ng-template>
+    </div>
+    <div class="sidebar-footer">
+        <ng-template [ngTemplateOutlet]="footerTemplate"></ng-template>
+    </div>
+</div>
+<ng-template #sidebarContent let-items="items">
+    <ul class="sidebar-menu" *ngIf="items">
+        <li *ngFor="let item of items">
+            <a (click)="navigate(item.href)">
+                <span>
+                    <fa-layers [fixedWidth]="true" *ngIf="item.icon && item.icon.length > 0">
+                        <fa-icon [icon]="item.icon"></fa-icon>
+                    </fa-layers>
+                    <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>
+                </span>
+            </a>
+            <ul class="sidebar-sub-menu" *ngIf="item.subItems && item.subItems.length > 0">
+                <li *ngFor="let subItem of item.subItems">
+                    <a (click)="navigate(subItem.href)">
+                        <span>
+                            <fa-layers [fixedWidth]="true" *ngIf="subItem.icon && subItem.icon.length > 0">
+                                <fa-icon [icon]="subItem.icon"></fa-icon>
+                            </fa-layers>
+                            <span>{{ !subItem.name.translateKey ? subItem.name.label : (subItem.name.translateKey | translate) }}</span>
+                        </span>
+                    </a>
+                    <a class="btn btn-secondary btn-sm" (click)="navigate(subItem.ext.href)" *ngIf="subItem.ext">
+                        <fa-layers *ngIf="subItem.ext.icon && subItem.ext.icon.length > 0">
+                            <fa-icon [icon]="subItem.ext.icon"></fa-icon>
+                        </fa-layers>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</ng-template>

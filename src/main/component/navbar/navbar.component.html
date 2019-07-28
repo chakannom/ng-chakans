@@ -1,0 +1,49 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-dark" *ngIf="isNavbarViewed | async">
+    <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()" *ngIf="brand && brand.title">
+        <span class="logo-img"></span>
+        <span class="navbar-title">{{ !brand.title.translateKey ? brand.title.label : (brand.title.translateKey | translate) }}</span>
+        <span class="navbar-version" *ngIf="brand.version">{{ brand.version }}</span>
+    </a>
+    <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+        <fa-icon icon="bars"></fa-icon>
+    </a>
+    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed">
+        <ul class="navbar-nav ml-auto">
+            <li *ngFor="let item of menuItems" [ngTemplateOutlet]="item.subItems && item.subItems.length > 0 ? dropdown : nonDropdown" [ngTemplateOutletContext]="{ item: item }"></li>
+        </ul>
+    </div>
+</nav>
+<ng-template #nonDropdown let-item="item">
+    <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" (click)="navigate(item.href);collapseNavbar()">
+            <span>
+                <fa-layers [fixedWidth]="true" *ngIf="item.icon && item.icon.length > 0">
+                    <fa-icon [icon]="item.icon"></fa-icon>
+                </fa-layers>
+                <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>
+            </span>
+        </a>
+    </li>
+</ng-template>
+<ng-template #dropdown let-item="item">
+    <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="{{ item.id }}">
+            <span>
+                <fa-layers [fixedWidth]="true" *ngIf="item.icon && item.icon.length > 0">
+                    <fa-icon [icon]="item.icon"></fa-icon>
+                </fa-layers>
+                <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>
+            </span>
+        </a>
+        <ul class="dropdown-menu" ngbDropdownMenu [attr.aria-labelledby]="item.id" *ngIf="item.subItems && item.subItems.length > 0">
+            <li *ngFor="let subItem of item.subItems">
+                <a class="dropdown-item" (click)="navigate(subItem.href);collapseNavbar()">
+                    <fa-layers [fixedWidth]="true" *ngIf="subItem.icon && subItem.icon.length > 0">
+                        <fa-icon [icon]="subItem.icon"></fa-icon>
+                    </fa-layers>
+                    <span>{{ !subItem.name.translateKey ? subItem.name.label : (subItem.name.translateKey | translate) }}</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ng-template>

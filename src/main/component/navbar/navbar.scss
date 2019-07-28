@@ -1,0 +1,53 @@
+/* ==========================================================================
+Navbar styles
+========================================================================== */
+.navbar {
+  position: fixed;
+  width: 100%;
+  padding: 0.125rem 1rem;
+  z-index: 1000;
+  ul.navbar-nav {
+    .nav-item {
+      margin-left: 0.5em;
+    }
+    @media screen and (max-width: 768px) {
+      .dropdown-menu {
+        position: static !important;
+        top: initial !important;
+        left: initial !important;
+        transform: none !important;
+      }
+    }
+  }
+  a.nav-link {
+    font-weight: 400;
+  }
+}
+.navbar-version {
+  font-size: 0.65em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.profile-image {
+  height: 1.75em;
+  width: 1.75em;
+}
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.navbar-brand {
+  height: 3.25rem;
+}
+.navbar-dark {
+  .navbar-brand {
+    color: #fff !important;
+  }
+}
+.logo-img {
+  height: 42px;
+  width: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.navbar-title {
+  vertical-align: middle;
+}
