@@ -5,7 +5,6 @@ export declare class CksNavbarComponent {
     private routeService;
     brand: any;
     menuItems: any[];
-    homeHref: string;
     isNavbarViewed: Observable<boolean>;
     isNavbarCollapsed: boolean;
     constructor(navbarService: CksNavbarService, routeService: CksRouteService);
