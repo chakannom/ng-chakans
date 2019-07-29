@@ -17,9 +17,13 @@ export class CksSidebarComponent {
     this.isSidebarViewed = this.sidebarService.isSidebarViewed;
   }
 
-  navigate(href: any) {
-    if (href) {
-      this.routeService.navigate(href);
+  doAction(navigation: any) {
+    if (navigation) {
+      if (typeof navigation === 'function') {
+        navigation();
+      } else {
+        this.routeService.navigate(navigation);
+      }
     }
   }
 }

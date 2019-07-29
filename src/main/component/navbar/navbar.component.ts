@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CksNavbarService, CksRouteService } from '../../service';
 
@@ -6,7 +6,7 @@ import { CksNavbarService, CksRouteService } from '../../service';
   selector: 'cks-navbar',
   templateUrl: './navbar.component.html'
 })
-export class CksNavbarComponent implements OnInit {
+export class CksNavbarComponent {
   @Input() brand: any;
   @Input() menuItems: any[];
   isNavbarViewed: Observable<boolean>;
@@ -17,11 +17,14 @@ export class CksNavbarComponent implements OnInit {
     this.isNavbarViewed = this.navbarService.isNavbarViewed;
   }
 
-  ngOnInit() {}
-
-  navigate(href: any) {
-    if (href) {
-      this.routeService.navigate(href);
+  doAction(navigation: any) {
+    this.collapseNavbar();
+    if (navigation) {
+      if (typeof navigation === 'function') {
+        navigation();
+      } else {
+        this.routeService.navigate(navigation);
+      }
     }
   }
 

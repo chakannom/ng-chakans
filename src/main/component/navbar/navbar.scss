@@ -4,6 +4,7 @@ Navbar styles
 .navbar {
   position: fixed;
   width: 100%;
+  min-height: 3.5rem;
   padding: 0.125rem 1rem;
   z-index: 1000;
   ul.navbar-nav {
@@ -34,9 +35,6 @@ Navbar styles
 /* ==========================================================================
 Logo styles
 ========================================================================== */
-.navbar-brand {
-  height: 3.25rem;
-}
 .navbar-dark {
   .navbar-brand {
     color: #fff !important;

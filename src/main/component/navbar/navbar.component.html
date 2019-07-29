@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark navbar-expand-md bg-dark" *ngIf="isNavbarViewed | async">
-    <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()" *ngIf="brand && brand.title">
+    <a class="navbar-brand logo" (click)="doAction({routerLink: ['/']})" *ngIf="brand && brand.title">
         <span class="logo-img"></span>
         <span class="navbar-title">{{ !brand.title.translateKey ? brand.title.label : (brand.title.translateKey | translate) }}</span>
         <span class="navbar-version" *ngIf="brand.version">{{ brand.version }}</span>
@@ -15,7 +15,7 @@
 </nav>
 <ng-template #nonDropdown let-item="item">
     <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" (click)="navigate(item.href);collapseNavbar()">
+        <a class="nav-link" (click)="doAction(item.navigation);">
             <span>
                 <fa-layers [fixedWidth]="true" *ngIf="item.icon && item.icon.length > 0">
                     <fa-icon [icon]="item.icon"></fa-icon>
@@ -37,7 +37,7 @@
         </a>
         <ul class="dropdown-menu" ngbDropdownMenu [attr.aria-labelledby]="item.id" *ngIf="item.subItems && item.subItems.length > 0">
             <li *ngFor="let subItem of item.subItems">
-                <a class="dropdown-item" (click)="navigate(subItem.href);collapseNavbar()">
+                <a class="dropdown-item" (click)="doAction(subItem.navigation);">
                     <fa-layers [fixedWidth]="true" *ngIf="subItem.icon && subItem.icon.length > 0">
                         <fa-icon [icon]="subItem.icon"></fa-icon>
                     </fa-layers>
