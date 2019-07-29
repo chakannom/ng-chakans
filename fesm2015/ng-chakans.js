@@ -200,7 +200,8 @@ let CksNavbarComponent = class CksNavbarComponent {
     constructor(navbarService, routeService) {
         this.navbarService = navbarService;
         this.routeService = routeService;
-        this.homeHref = window['base-href'];
+        const baseElement = document.querySelector('base');
+        this.homeHref = (baseElement && baseElement.href) || '';
         this.isNavbarCollapsed = true;
         this.isNavbarViewed = this.navbarService.isNavbarViewed;
     }
