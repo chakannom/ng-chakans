@@ -10,5 +10,5 @@ export declare class CksSidebarComponent {
     menuItems: any[];
     isSidebarViewed: Observable<boolean>;
     constructor(sidebarService: CksSidebarService, routeService: CksRouteService);
-    navigate(href: any): void;
+    doAction(navigation: any): void;
 }
