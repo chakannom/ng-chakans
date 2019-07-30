@@ -31,7 +31,7 @@ And add it to you application module:
 ```
 
 ### Using components
-* [<cks-navbar>](/docs/contents/components/navbar.md)
+* [\<cks-navbar\>](/docs/contents/components/navbar.md)
 * [<cks-page-ribbon>](/docs/contents/components/profiles.md)
 * [<cks-sidebar>](/docs/contents/components/sidebar.md)
 
