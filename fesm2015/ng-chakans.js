@@ -347,6 +347,36 @@ let NgChakansModule = NgChakansModule_1 = class NgChakansModule {
                     provide: CksConfigService,
                     useClass: CksConfigService,
                     deps: [CksModuleConfig]
+                },
+                {
+                    provide: CksProfileService,
+                    useClass: CksProfileService,
+                    deps: [CksConfigService, HttpClient]
+                },
+                {
+                    provide: CksRouteService,
+                    useClass: CksRouteService,
+                    deps: [Router]
+                },
+                {
+                    provide: CksActiveLanguageDirective,
+                    useClass: CksActiveLanguageDirective,
+                    deps: [ElementRef, Renderer2, TranslateService]
+                },
+                {
+                    provide: CksNavbarComponent,
+                    useClass: CksNavbarComponent,
+                    deps: [CksNavbarService, CksRouteService]
+                },
+                {
+                    provide: CksPageRibbonComponent,
+                    useClass: CksPageRibbonComponent,
+                    deps: [CksProfileService]
+                },
+                {
+                    provide: CksSidebarComponent,
+                    useClass: CksSidebarComponent,
+                    deps: [CksSidebarService, CksRouteService]
                 }
             ]
         };
@@ -367,5 +397,5 @@ NgChakansModule = NgChakansModule_1 = __decorate([
     })
 ], NgChakansModule);
 
-export { CksConfigService, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, NgChakansModule, CksNavbarService as ɵa, CksRouteService as ɵb, CksProfileService as ɵc, CksSidebarService as ɵd, CKS_COMPONENTS as ɵe, CKS_DIRECTIVES as ɵf, CksActiveLanguageDirective as ɵg };
+export { CksConfigService, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, NgChakansModule, CksNavbarService as ɵa, CksRouteService as ɵb, CksProfileService as ɵc, CksSidebarService as ɵd, CKS_COMPONENTS as ɵe, CKS_DIRECTIVES as ɵf, CksActiveLanguageDirective as ɵg, CksNavbarComponent as ɵh, CksPageRibbonComponent as ɵi, CksSidebarComponent as ɵj };
 //# sourceMappingURL=ng-chakans.js.map
