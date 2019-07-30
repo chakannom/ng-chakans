@@ -291,6 +291,16 @@ let NgChakansModule = NgChakansModule_1 = class NgChakansModule {
                     provide: CksConfigService,
                     useClass: CksConfigService,
                     deps: [CksModuleConfig]
+                },
+                {
+                    provide: CksProfileService,
+                    useClass: CksProfileService,
+                    deps: [CksConfigService, HttpClient]
+                },
+                {
+                    provide: CksRouteService,
+                    useClass: CksRouteService,
+                    deps: [Router]
                 }
             ]
         };
