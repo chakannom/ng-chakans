@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CksNavbarService } from '../../service/navbar.service';
+import { CksRouteService } from '../../service/route.service';
 
 @Component({
   selector: 'cks-navbar',
@@ -12,7 +13,7 @@ export class CksNavbarComponent {
   isNavbarViewed: Observable<boolean>;
   isNavbarCollapsed: boolean;
 
-  constructor(private navbarService: CksNavbarService) {
+  constructor(private navbarService: CksNavbarService, private routeService: CksRouteService) {
     this.isNavbarCollapsed = true;
     this.isNavbarViewed = this.navbarService.isNavbarViewed;
   }
@@ -23,7 +24,7 @@ export class CksNavbarComponent {
       if (typeof navigation === 'function') {
         navigation();
       } else {
-        window.location.href = navigation;
+        this.routeService.navigate(navigation);
       }
     }
   }
