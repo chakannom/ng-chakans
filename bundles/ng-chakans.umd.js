@@ -367,16 +367,6 @@
                         provide: CksConfigService,
                         useClass: CksConfigService,
                         deps: [CksModuleConfig]
-                    },
-                    {
-                        provide: CksProfileService,
-                        useClass: CksProfileService,
-                        deps: [CksConfigService, http.HttpClient]
-                    },
-                    {
-                        provide: CksRouteService,
-                        useClass: CksRouteService,
-                        deps: [router.Router]
                     }
                 ]
             };

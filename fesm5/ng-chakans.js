@@ -312,16 +312,6 @@ var NgChakansModule = /** @class */ (function () {
                     provide: CksConfigService,
                     useClass: CksConfigService,
                     deps: [CksModuleConfig]
-                },
-                {
-                    provide: CksProfileService,
-                    useClass: CksProfileService,
-                    deps: [CksConfigService, HttpClient]
-                },
-                {
-                    provide: CksRouteService,
-                    useClass: CksRouteService,
-                    deps: [Router]
                 }
             ]
         };
