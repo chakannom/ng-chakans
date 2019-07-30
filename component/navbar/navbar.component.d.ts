@@ -12,4 +12,5 @@ export declare class CksNavbarComponent {
     doAction(navigation: any): void;
     collapseNavbar(): void;
     toggleNavbar(): void;
+    isUsedRouterLink(navigation: any): boolean;
 }
