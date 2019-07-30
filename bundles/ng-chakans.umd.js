@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@angular/common/http'), require('rxjs/operators'), require('@angular/router'), require('@angular/common'), require('@ng-bootstrap/ng-bootstrap'), require('@fortawesome/angular-fontawesome'), require('@ngx-translate/core')) :
-    typeof define === 'function' && define.amd ? define('ng-chakans', ['exports', '@angular/core', 'rxjs', '@angular/common/http', 'rxjs/operators', '@angular/router', '@angular/common', '@ng-bootstrap/ng-bootstrap', '@fortawesome/angular-fontawesome', '@ngx-translate/core'], factory) :
-    (global = global || self, factory(global['ng-chakans'] = {}, global.ng.core, global.rxjs, global.ng.common.http, global.rxjs.operators, global.ng.router, global.ng.common, global.ngBootstrap, global.angularFontawesome, global.core$1));
-}(this, function (exports, core, rxjs, http, operators, router, common, ngBootstrap, angularFontawesome, core$1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@angular/router'), require('@angular/common/http'), require('rxjs/operators'), require('@angular/common'), require('@ng-bootstrap/ng-bootstrap'), require('@fortawesome/angular-fontawesome'), require('@ngx-translate/core')) :
+    typeof define === 'function' && define.amd ? define('ng-chakans', ['exports', '@angular/core', 'rxjs', '@angular/router', '@angular/common/http', 'rxjs/operators', '@angular/common', '@ng-bootstrap/ng-bootstrap', '@fortawesome/angular-fontawesome', '@ngx-translate/core'], factory) :
+    (global = global || self, factory(global['ng-chakans'] = {}, global.ng.core, global.rxjs, global.ng.router, global.ng.common.http, global.rxjs.operators, global.ng.common, global.ngBootstrap, global.angularFontawesome, global.core$1));
+}(this, function (exports, core, rxjs, router, http, operators, common, ngBootstrap, angularFontawesome, core$1) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -86,9 +86,39 @@
         return CksNavbarService;
     }());
 
+    var CksRouteService = /** @class */ (function () {
+        function CksRouteService(router) {
+            this.router = router;
+        }
+        CksRouteService.prototype.navigate = function (navigation) {
+            if (typeof navigation === 'string') {
+                window.location.href = navigation;
+            }
+            else {
+                var navigationExtras = {};
+                if (navigation.queryParams) {
+                    navigationExtras.queryParams = navigation.queryParams;
+                }
+                if (navigation.fragment) {
+                    navigationExtras.fragment = navigation.fragment;
+                }
+                if (navigation.routerLink && navigation.routerLink.length > 0) {
+                    this.router.navigate(navigation.routerLink, navigationExtras);
+                }
+            }
+        };
+        CksRouteService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function CksRouteService_Factory() { return new CksRouteService(core.ɵɵinject(router.Router)); }, token: CksRouteService, providedIn: "root" });
+        CksRouteService = __decorate([
+            core.Injectable({ providedIn: 'root' }),
+            __metadata("design:paramtypes", [router.Router])
+        ], CksRouteService);
+        return CksRouteService;
+    }());
+
     var CksNavbarComponent = /** @class */ (function () {
-        function CksNavbarComponent(navbarService) {
+        function CksNavbarComponent(navbarService, routeService) {
             this.navbarService = navbarService;
+            this.routeService = routeService;
             this.isNavbarCollapsed = true;
             this.isNavbarViewed = this.navbarService.isNavbarViewed;
         }
@@ -99,7 +129,7 @@
                     navigation();
                 }
                 else {
-                    window.location.href = navigation;
+                    this.routeService.navigate(navigation);
                 }
             }
         };
@@ -128,7 +158,7 @@
                 selector: 'cks-navbar',
                 template: "<nav class=\"navbar navbar-dark navbar-expand-md bg-dark\" *ngIf=\"isNavbarViewed | async\">\n    <a class=\"navbar-brand logo\" (click)=\"doAction({routerLink: ['/']})\" *ngIf=\"brand && brand.title\">\n        <span class=\"logo-img\"></span>\n        <span class=\"navbar-title\">{{ !brand.title.translateKey ? brand.title.label : (brand.title.translateKey | translate) }}</span>\n        <span class=\"navbar-version\" *ngIf=\"brand.version\">{{ brand.version }}</span>\n    </a>\n    <a class=\"navbar-toggler d-lg-none\" href=\"javascript:void(0);\" data-toggle=\"collapse\" data-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\" (click)=\"toggleNavbar()\">\n        <fa-icon icon=\"bars\"></fa-icon>\n    </a>\n    <div class=\"navbar-collapse collapse\" id=\"navbarResponsive\" [ngbCollapse]=\"isNavbarCollapsed\">\n        <ul class=\"navbar-nav ml-auto\">\n            <ng-template *ngFor=\"let item of menuItems\" [ngTemplateOutlet]=\"item.subItems && item.subItems.length > 0 ? dropdown : nonDropdown\" [ngTemplateOutletContext]=\"{ item: item }\"></ng-template>\n        </ul>\n    </div>\n</nav>\n<ng-template #nonDropdown let-item=\"item\">\n    <li class=\"nav-item\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\">\n        <ng-template [ngTemplateOutlet]=\"isUsedRouterLink(item.navigation) ? routerLink : nonRouterLink\" [ngTemplateOutletContext]=\"{ item: item, classname: 'nav-link' }\"></ng-template>\n    </li>\n</ng-template>\n<ng-template #dropdown let-item=\"item\">\n    <li ngbDropdown class=\"nav-item dropdown pointer\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact: true}\">\n        <a class=\"nav-link dropdown-toggle\" ngbDropdownToggle href=\"javascript:void(0);\" id=\"{{ item.id }}\">\n            <span>\n                <fa-layers [fixedWidth]=\"true\" *ngIf=\"item.icon && item.icon.length > 0\">\n                    <fa-icon [icon]=\"item.icon\"></fa-icon>\n                </fa-layers>\n                <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>\n            </span>\n        </a>\n        <ul class=\"dropdown-menu\" ngbDropdownMenu [attr.aria-labelledby]=\"item.id\" *ngIf=\"item.subItems && item.subItems.length > 0\">\n            <li *ngFor=\"let subItem of item.subItems\">\n                <ng-template [ngTemplateOutlet]=\"isUsedRouterLink(subItem.navigation) ? routerLink : nonRouterLink\" [ngTemplateOutletContext]=\"{ item: subItem, classname: 'dropdown-item' }\"></ng-template>\n            </li>\n        </ul>\n    </li>\n</ng-template>\n<ng-template #nonRouterLink let-item=\"item\" let-classname=\"classname\">\n    <a [ngClass]=\"classname\" (click)=\"doAction(item.navigation)\">\n        <span>\n            <fa-layers [fixedWidth]=\"true\" *ngIf=\"item.icon && item.icon.length > 0\">\n                <fa-icon [icon]=\"item.icon\"></fa-icon>\n            </fa-layers>\n            <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>\n        </span>\n    </a>\n</ng-template>\n<ng-template #routerLink let-item=\"item\" let-classname=\"classname\">\n    <a [ngClass]=\"classname\" routerLinkActive=\"active\" [routerLink]=\"item.navigation.routerLink\" [queryParams]=\"item.navigation.queryParams\" [fragment]=\"item.navigation.fragment\" (click)=\"collapseNavbar()\">\n        <span>\n            <fa-layers [fixedWidth]=\"true\" *ngIf=\"item.icon && item.icon.length > 0\">\n                <fa-icon [icon]=\"item.icon\"></fa-icon>\n            </fa-layers>\n            <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>\n        </span>\n    </a>\n</ng-template>\n"
             }),
-            __metadata("design:paramtypes", [CksNavbarService])
+            __metadata("design:paramtypes", [CksNavbarService, CksRouteService])
         ], CksNavbarComponent);
         return CksNavbarComponent;
     }());
@@ -249,35 +279,6 @@
             __metadata("design:paramtypes", [])
         ], CksSidebarService);
         return CksSidebarService;
-    }());
-
-    var CksRouteService = /** @class */ (function () {
-        function CksRouteService(router) {
-            this.router = router;
-        }
-        CksRouteService.prototype.navigate = function (navigation) {
-            if (typeof navigation === 'string') {
-                window.location.href = navigation;
-            }
-            else {
-                var navigationExtras = {};
-                if (navigation.queryParams) {
-                    navigationExtras.queryParams = navigation.queryParams;
-                }
-                if (navigation.fragment) {
-                    navigationExtras.fragment = navigation.fragment;
-                }
-                if (navigation.routerLink && navigation.routerLink.length > 0) {
-                    this.router.navigate(navigation.routerLink, navigationExtras);
-                }
-            }
-        };
-        CksRouteService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function CksRouteService_Factory() { return new CksRouteService(core.ɵɵinject(router.Router)); }, token: CksRouteService, providedIn: "root" });
-        CksRouteService = __decorate([
-            core.Injectable({ providedIn: 'root' }),
-            __metadata("design:paramtypes", [router.Router])
-        ], CksRouteService);
-        return CksRouteService;
     }());
 
     var CksSidebarComponent = /** @class */ (function () {
