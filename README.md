@@ -1,54 +1,30 @@
-CksSidebarComponent
+## Development instructions
 
-- headerTemplate: TemplateRef
-- contentTemplate: TemplateRef
-- footerTemplate: TemplateRef
-- menu: array
+The `NgChakansModule` is located in the ng-chakans and packaged into a redistributable package with the ng-packagr tool.
 
-```json
-menu = [
-    {
-        href: {
-            routerLink: ['/home'],
-            queryParams: { query: query },
-            fragment: 'fragment'
-        },
-        icon: ['fa', 'home'],
-        name: {
-            label: 'Home',
-            translateKey: 'sidebar.menu.home'
-        }
-    },
-    {
-        name: {
-            label: 'Home'
-        },
-        subItems: [
-            {
-                href: {
-                    routerLink: ['/']
-                },
-                icon: ['fa', 'home'],
-                name: {
-                    label: 'Home'
-                },
-                ext: {
-                    href: {
-                        routerLink: ['/']
-                    },
-                    icon: ['fa', 'home']
-                }
-            },
-            {
-                href: {
-                    routerLink: ['/']
-                },
-                icon: ['fa', 'home'],
-                name: {
-                    label: 'Home'
-                }
-            }
-        ]
-    }
-];
+## Usage
+
+### Loading the `NgChakansModule`
+
+Import the `NgChakansModule` from the npm package like this:
+
+```tsx
+import { NgChakansModule } from 'ng-chakans';
+```
+And add it to you application module:
+
+```tsx
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgChakansModule.forRoot({ 
+      serverApiUrl: '/'
+    }) // <- Important part
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
 ```

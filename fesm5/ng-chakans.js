@@ -350,8 +350,8 @@ var CksActiveLanguageDirective = /** @class */ (function () {
     return CksActiveLanguageDirective;
 }());
 
-var CKS_DIRECTIVES = [CksActiveLanguageDirective];
 var CKS_COMPONENTS = [CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent];
+var CKS_DIRECTIVES = [CksActiveLanguageDirective];
 
 var NgChakansModule = /** @class */ (function () {
     function NgChakansModule() {
@@ -388,5 +388,5 @@ var NgChakansModule = /** @class */ (function () {
     return NgChakansModule;
 }());
 
-export { CksConfigService, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, NgChakansModule, CksNavbarService as ɵa, CksRouteService as ɵb, CksProfileService as ɵc, CksSidebarService as ɵd, CKS_DIRECTIVES as ɵe, CKS_COMPONENTS as ɵf, CksActiveLanguageDirective as ɵg, CksNavbarComponent as ɵh, CksPageRibbonComponent as ɵi, CksSidebarComponent as ɵj };
+export { CksConfigService, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, NgChakansModule, CksNavbarService as ɵa, CksRouteService as ɵb, CksProfileService as ɵc, CksSidebarService as ɵd, CKS_COMPONENTS as ɵe, CKS_DIRECTIVES as ɵf, CksActiveLanguageDirective as ɵg };
 //# sourceMappingURL=ng-chakans.js.map

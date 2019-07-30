@@ -405,8 +405,8 @@
         return CksActiveLanguageDirective;
     }());
 
-    var CKS_DIRECTIVES = [CksActiveLanguageDirective];
     var CKS_COMPONENTS = [CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent];
+    var CKS_DIRECTIVES = [CksActiveLanguageDirective];
 
     var NgChakansModule = /** @class */ (function () {
         function NgChakansModule() {
@@ -458,12 +458,9 @@
     exports.ɵb = CksRouteService;
     exports.ɵc = CksProfileService;
     exports.ɵd = CksSidebarService;
-    exports.ɵe = CKS_DIRECTIVES;
-    exports.ɵf = CKS_COMPONENTS;
+    exports.ɵe = CKS_COMPONENTS;
+    exports.ɵf = CKS_DIRECTIVES;
     exports.ɵg = CksActiveLanguageDirective;
-    exports.ɵh = CksNavbarComponent;
-    exports.ɵi = CksPageRibbonComponent;
-    exports.ɵj = CksSidebarComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
