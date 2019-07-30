@@ -1,9 +1,9 @@
 import { __decorate, __metadata, __assign, __spread } from 'tslib';
 import { ɵɵdefineInjectable, Injectable, ɵɵinject, Input, Component, TemplateRef, Directive, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,6 +29,77 @@ var CksNavbarService = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], CksNavbarService);
     return CksNavbarService;
+}());
+
+var CksRouteService = /** @class */ (function () {
+    function CksRouteService(router) {
+        this.router = router;
+    }
+    CksRouteService.prototype.navigate = function (href) {
+        if (typeof href === 'string') {
+            window.location.href = href;
+        }
+        else {
+            var navigationExtras = {};
+            if (href.queryParams) {
+                navigationExtras.queryParams = href.queryParams;
+            }
+            if (href.fragment) {
+                navigationExtras.fragment = href.fragment;
+            }
+            if (href.routerLink && href.routerLink.length > 0) {
+                this.router.navigate(href.routerLink, navigationExtras);
+            }
+        }
+    };
+    CksRouteService.ngInjectableDef = ɵɵdefineInjectable({ factory: function CksRouteService_Factory() { return new CksRouteService(ɵɵinject(Router)); }, token: CksRouteService, providedIn: "root" });
+    CksRouteService = __decorate([
+        Injectable({ providedIn: 'root' }),
+        __metadata("design:paramtypes", [Router])
+    ], CksRouteService);
+    return CksRouteService;
+}());
+
+var CksNavbarComponent = /** @class */ (function () {
+    function CksNavbarComponent(navbarService, routeService) {
+        this.navbarService = navbarService;
+        this.routeService = routeService;
+        this.isNavbarCollapsed = true;
+        this.isNavbarViewed = this.navbarService.isNavbarViewed;
+    }
+    CksNavbarComponent.prototype.doAction = function (navigation) {
+        this.collapseNavbar();
+        if (navigation) {
+            if (typeof navigation === 'function') {
+                navigation();
+            }
+            else {
+                this.routeService.navigate(navigation);
+            }
+        }
+    };
+    CksNavbarComponent.prototype.collapseNavbar = function () {
+        this.isNavbarCollapsed = true;
+    };
+    CksNavbarComponent.prototype.toggleNavbar = function () {
+        this.isNavbarCollapsed = !this.isNavbarCollapsed;
+    };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], CksNavbarComponent.prototype, "brand", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], CksNavbarComponent.prototype, "menuItems", void 0);
+    CksNavbarComponent = __decorate([
+        Component({
+            selector: 'cks-navbar',
+            template: "<nav class=\"navbar navbar-dark navbar-expand-md bg-dark\" *ngIf=\"isNavbarViewed | async\">\n    <a class=\"navbar-brand logo\" (click)=\"doAction({routerLink: ['/']})\" *ngIf=\"brand && brand.title\">\n        <span class=\"logo-img\"></span>\n        <span class=\"navbar-title\">{{ !brand.title.translateKey ? brand.title.label : (brand.title.translateKey | translate) }}</span>\n        <span class=\"navbar-version\" *ngIf=\"brand.version\">{{ brand.version }}</span>\n    </a>\n    <a class=\"navbar-toggler d-lg-none\" href=\"javascript:void(0);\" data-toggle=\"collapse\" data-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\" (click)=\"toggleNavbar()\">\n        <fa-icon icon=\"bars\"></fa-icon>\n    </a>\n    <div class=\"navbar-collapse collapse\" id=\"navbarResponsive\" [ngbCollapse]=\"isNavbarCollapsed\">\n        <ul class=\"navbar-nav ml-auto\">\n            <li *ngFor=\"let item of menuItems\" [ngTemplateOutlet]=\"item.subItems && item.subItems.length > 0 ? dropdown : nonDropdown\" [ngTemplateOutletContext]=\"{ item: item }\"></li>\n        </ul>\n    </div>\n</nav>\n<ng-template #nonDropdown let-item=\"item\">\n    <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" (click)=\"doAction(item.navigation);\">\n            <span>\n                <fa-layers [fixedWidth]=\"true\" *ngIf=\"item.icon && item.icon.length > 0\">\n                    <fa-icon [icon]=\"item.icon\"></fa-icon>\n                </fa-layers>\n                <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>\n            </span>\n        </a>\n    </li>\n</ng-template>\n<ng-template #dropdown let-item=\"item\">\n    <li ngbDropdown class=\"nav-item dropdown pointer\" routerLinkActive=\"active\">\n        <a class=\"nav-link dropdown-toggle\" ngbDropdownToggle href=\"javascript:void(0);\" id=\"{{ item.id }}\">\n            <span>\n                <fa-layers [fixedWidth]=\"true\" *ngIf=\"item.icon && item.icon.length > 0\">\n                    <fa-icon [icon]=\"item.icon\"></fa-icon>\n                </fa-layers>\n                <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>\n            </span>\n        </a>\n        <ul class=\"dropdown-menu\" ngbDropdownMenu [attr.aria-labelledby]=\"item.id\" *ngIf=\"item.subItems && item.subItems.length > 0\">\n            <li *ngFor=\"let subItem of item.subItems\">\n                <a class=\"dropdown-item\" (click)=\"doAction(subItem.navigation);\">\n                    <fa-layers [fixedWidth]=\"true\" *ngIf=\"subItem.icon && subItem.icon.length > 0\">\n                        <fa-icon [icon]=\"subItem.icon\"></fa-icon>\n                    </fa-layers>\n                    <span>{{ !subItem.name.translateKey ? subItem.name.label : (subItem.name.translateKey | translate) }}</span>\n                </a>\n            </li>\n        </ul>\n    </li>\n</ng-template>\n"
+        }),
+        __metadata("design:paramtypes", [CksNavbarService, CksRouteService])
+    ], CksNavbarComponent);
+    return CksNavbarComponent;
 }());
 
 var CksProfileInfo = /** @class */ (function () {
@@ -106,33 +177,25 @@ var CksProfileService = /** @class */ (function () {
     return CksProfileService;
 }());
 
-var CksRouteService = /** @class */ (function () {
-    function CksRouteService(router) {
-        this.router = router;
+var CksPageRibbonComponent = /** @class */ (function () {
+    function CksPageRibbonComponent(profileService) {
+        this.profileService = profileService;
     }
-    CksRouteService.prototype.navigate = function (href) {
-        if (typeof href === 'string') {
-            window.location.href = href;
-        }
-        else {
-            var navigationExtras = {};
-            if (href.queryParams) {
-                navigationExtras.queryParams = href.queryParams;
-            }
-            if (href.fragment) {
-                navigationExtras.fragment = href.fragment;
-            }
-            if (href.routerLink && href.routerLink.length > 0) {
-                this.router.navigate(href.routerLink, navigationExtras);
-            }
-        }
+    CksPageRibbonComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.profileService.getProfileInfo().then(function (profileInfo) {
+            _this.profileInfo = profileInfo;
+            _this.ribbonEnv = profileInfo.ribbonEnv;
+        });
     };
-    CksRouteService.ngInjectableDef = ɵɵdefineInjectable({ factory: function CksRouteService_Factory() { return new CksRouteService(ɵɵinject(Router)); }, token: CksRouteService, providedIn: "root" });
-    CksRouteService = __decorate([
-        Injectable({ providedIn: 'root' }),
-        __metadata("design:paramtypes", [Router])
-    ], CksRouteService);
-    return CksRouteService;
+    CksPageRibbonComponent = __decorate([
+        Component({
+            selector: 'cks-page-ribbon',
+            template: "\n    <div class=\"ribbon\" *ngIf=\"ribbonEnv\">\n      <a href=\"\">{{ 'global.ribbon.' + ribbonEnv | translate }}</a>\n    </div>\n  "
+        }),
+        __metadata("design:paramtypes", [CksProfileService])
+    ], CksPageRibbonComponent);
+    return CksPageRibbonComponent;
 }());
 
 var CksSidebarService = /** @class */ (function () {
@@ -155,123 +218,6 @@ var CksSidebarService = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], CksSidebarService);
     return CksSidebarService;
-}());
-
-/**
- * An utility class to manage RX subscriptions
- */
-var CksSubscriptionManager = /** @class */ (function () {
-    function CksSubscriptionManager() {
-        this.subscribersMap = new Map();
-    }
-    /**
-     * Method to create {name}'s subscribers
-     */
-    CksSubscriptionManager.prototype.create = function (name) {
-        this.subscribersMap.set(name, []);
-    };
-    /**
-     * Method to push subscriber in {name}'s subscribers
-     */
-    CksSubscriptionManager.prototype.push = function (name, subscriber) {
-        if (this.subscribersMap.get(name) === undefined) {
-            this.create(name);
-        }
-        this.subscribersMap.get(name).push(subscriber);
-    };
-    /**
-     * Method to destroy {name}'s subscribers
-     */
-    CksSubscriptionManager.prototype.destroy = function (name) {
-        var subscribers = this.subscribersMap.get(name);
-        subscribers.filter(function (subscriber) { return subscriber !== undefined && !subscriber.closed; }).forEach(function (subscriber) { return subscriber.unsubscribe(); });
-        subscribers.splice(0, subscribers.length);
-        this.subscribersMap.delete(name);
-    };
-    /**
-     * Method to count {name}'s subscribers
-     */
-    CksSubscriptionManager.prototype.getCount = function (name) {
-        return this.subscribersMap.get(name).length;
-    };
-    /**
-     * Method to destroy all subscribers
-     */
-    CksSubscriptionManager.prototype.destroyAll = function () {
-        this.subscribersMap.forEach(function (subscribers, key) {
-            subscribers.filter(function (subscriber) { return subscriber !== undefined && !subscriber.closed; }).forEach(function (subscriber) { return subscriber.unsubscribe(); });
-            subscribers.splice(0, subscribers.length);
-        });
-        this.subscribersMap.clear();
-    };
-    CksSubscriptionManager.ngInjectableDef = ɵɵdefineInjectable({ factory: function CksSubscriptionManager_Factory() { return new CksSubscriptionManager(); }, token: CksSubscriptionManager, providedIn: "root" });
-    CksSubscriptionManager = __decorate([
-        Injectable({ providedIn: 'root' })
-    ], CksSubscriptionManager);
-    return CksSubscriptionManager;
-}());
-
-var CksNavbarComponent = /** @class */ (function () {
-    function CksNavbarComponent(navbarService, routeService) {
-        this.navbarService = navbarService;
-        this.routeService = routeService;
-        this.isNavbarCollapsed = true;
-        this.isNavbarViewed = this.navbarService.isNavbarViewed;
-    }
-    CksNavbarComponent.prototype.doAction = function (navigation) {
-        this.collapseNavbar();
-        if (navigation) {
-            if (typeof navigation === 'function') {
-                navigation();
-            }
-            else {
-                this.routeService.navigate(navigation);
-            }
-        }
-    };
-    CksNavbarComponent.prototype.collapseNavbar = function () {
-        this.isNavbarCollapsed = true;
-    };
-    CksNavbarComponent.prototype.toggleNavbar = function () {
-        this.isNavbarCollapsed = !this.isNavbarCollapsed;
-    };
-    __decorate([
-        Input(),
-        __metadata("design:type", Object)
-    ], CksNavbarComponent.prototype, "brand", void 0);
-    __decorate([
-        Input(),
-        __metadata("design:type", Array)
-    ], CksNavbarComponent.prototype, "menuItems", void 0);
-    CksNavbarComponent = __decorate([
-        Component({
-            selector: 'cks-navbar',
-            template: "<nav class=\"navbar navbar-dark navbar-expand-md bg-dark\" *ngIf=\"isNavbarViewed | async\">\n    <a class=\"navbar-brand logo\" (click)=\"doAction({routerLink: ['/']})\" *ngIf=\"brand && brand.title\">\n        <span class=\"logo-img\"></span>\n        <span class=\"navbar-title\">{{ !brand.title.translateKey ? brand.title.label : (brand.title.translateKey | translate) }}</span>\n        <span class=\"navbar-version\" *ngIf=\"brand.version\">{{ brand.version }}</span>\n    </a>\n    <a class=\"navbar-toggler d-lg-none\" href=\"javascript:void(0);\" data-toggle=\"collapse\" data-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\" (click)=\"toggleNavbar()\">\n        <fa-icon icon=\"bars\"></fa-icon>\n    </a>\n    <div class=\"navbar-collapse collapse\" id=\"navbarResponsive\" [ngbCollapse]=\"isNavbarCollapsed\">\n        <ul class=\"navbar-nav ml-auto\">\n            <li *ngFor=\"let item of menuItems\" [ngTemplateOutlet]=\"item.subItems && item.subItems.length > 0 ? dropdown : nonDropdown\" [ngTemplateOutletContext]=\"{ item: item }\"></li>\n        </ul>\n    </div>\n</nav>\n<ng-template #nonDropdown let-item=\"item\">\n    <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" (click)=\"doAction(item.navigation);\">\n            <span>\n                <fa-layers [fixedWidth]=\"true\" *ngIf=\"item.icon && item.icon.length > 0\">\n                    <fa-icon [icon]=\"item.icon\"></fa-icon>\n                </fa-layers>\n                <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>\n            </span>\n        </a>\n    </li>\n</ng-template>\n<ng-template #dropdown let-item=\"item\">\n    <li ngbDropdown class=\"nav-item dropdown pointer\" routerLinkActive=\"active\">\n        <a class=\"nav-link dropdown-toggle\" ngbDropdownToggle href=\"javascript:void(0);\" id=\"{{ item.id }}\">\n            <span>\n                <fa-layers [fixedWidth]=\"true\" *ngIf=\"item.icon && item.icon.length > 0\">\n                    <fa-icon [icon]=\"item.icon\"></fa-icon>\n                </fa-layers>\n                <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>\n            </span>\n        </a>\n        <ul class=\"dropdown-menu\" ngbDropdownMenu [attr.aria-labelledby]=\"item.id\" *ngIf=\"item.subItems && item.subItems.length > 0\">\n            <li *ngFor=\"let subItem of item.subItems\">\n                <a class=\"dropdown-item\" (click)=\"doAction(subItem.navigation);\">\n                    <fa-layers [fixedWidth]=\"true\" *ngIf=\"subItem.icon && subItem.icon.length > 0\">\n                        <fa-icon [icon]=\"subItem.icon\"></fa-icon>\n                    </fa-layers>\n                    <span>{{ !subItem.name.translateKey ? subItem.name.label : (subItem.name.translateKey | translate) }}</span>\n                </a>\n            </li>\n        </ul>\n    </li>\n</ng-template>\n"
-        }),
-        __metadata("design:paramtypes", [CksNavbarService, CksRouteService])
-    ], CksNavbarComponent);
-    return CksNavbarComponent;
-}());
-
-var CksPageRibbonComponent = /** @class */ (function () {
-    function CksPageRibbonComponent(profileService) {
-        this.profileService = profileService;
-    }
-    CksPageRibbonComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.profileService.getProfileInfo().then(function (profileInfo) {
-            _this.profileInfo = profileInfo;
-            _this.ribbonEnv = profileInfo.ribbonEnv;
-        });
-    };
-    CksPageRibbonComponent = __decorate([
-        Component({
-            selector: 'cks-page-ribbon',
-            template: "\n    <div class=\"ribbon\" *ngIf=\"ribbonEnv\">\n      <a href=\"\">{{ 'global.ribbon.' + ribbonEnv | translate }}</a>\n    </div>\n  "
-        }),
-        __metadata("design:paramtypes", [CksProfileService])
-    ], CksPageRibbonComponent);
-    return CksPageRibbonComponent;
 }());
 
 var CksSidebarComponent = /** @class */ (function () {
@@ -398,5 +344,59 @@ var NgChakansModule = /** @class */ (function () {
     return NgChakansModule;
 }());
 
-export { CksConfigService, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, NgChakansModule, CksNavbarService as ɵa, CksRouteService as ɵb, CksProfileService as ɵc, CksSidebarService as ɵd, CKS_COMPONENTS as ɵe, CKS_DIRECTIVES as ɵf, CksActiveLanguageDirective as ɵg, CksNavbarComponent as ɵh, CksPageRibbonComponent as ɵi, CksSidebarComponent as ɵj };
+/**
+ * An utility class to manage RX subscriptions
+ */
+var CksSubscriptionManager = /** @class */ (function () {
+    function CksSubscriptionManager() {
+        this.subscribersMap = new Map();
+    }
+    /**
+     * Method to create {name}'s subscribers
+     */
+    CksSubscriptionManager.prototype.create = function (name) {
+        this.subscribersMap.set(name, []);
+    };
+    /**
+     * Method to push subscriber in {name}'s subscribers
+     */
+    CksSubscriptionManager.prototype.push = function (name, subscriber) {
+        if (this.subscribersMap.get(name) === undefined) {
+            this.create(name);
+        }
+        this.subscribersMap.get(name).push(subscriber);
+    };
+    /**
+     * Method to destroy {name}'s subscribers
+     */
+    CksSubscriptionManager.prototype.destroy = function (name) {
+        var subscribers = this.subscribersMap.get(name);
+        subscribers.filter(function (subscriber) { return subscriber !== undefined && !subscriber.closed; }).forEach(function (subscriber) { return subscriber.unsubscribe(); });
+        subscribers.splice(0, subscribers.length);
+        this.subscribersMap.delete(name);
+    };
+    /**
+     * Method to count {name}'s subscribers
+     */
+    CksSubscriptionManager.prototype.getCount = function (name) {
+        return this.subscribersMap.get(name).length;
+    };
+    /**
+     * Method to destroy all subscribers
+     */
+    CksSubscriptionManager.prototype.destroyAll = function () {
+        this.subscribersMap.forEach(function (subscribers, key) {
+            subscribers.filter(function (subscriber) { return subscriber !== undefined && !subscriber.closed; }).forEach(function (subscriber) { return subscriber.unsubscribe(); });
+            subscribers.splice(0, subscribers.length);
+        });
+        this.subscribersMap.clear();
+    };
+    CksSubscriptionManager.ngInjectableDef = ɵɵdefineInjectable({ factory: function CksSubscriptionManager_Factory() { return new CksSubscriptionManager(); }, token: CksSubscriptionManager, providedIn: "root" });
+    CksSubscriptionManager = __decorate([
+        Injectable({ providedIn: 'root' })
+    ], CksSubscriptionManager);
+    return CksSubscriptionManager;
+}());
+
+export { CksConfigService, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, NgChakansModule, CKS_COMPONENTS as ɵa, CKS_DIRECTIVES as ɵb, CksActiveLanguageDirective as ɵc };
 //# sourceMappingURL=ng-chakans.js.map

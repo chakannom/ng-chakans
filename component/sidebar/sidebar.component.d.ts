@@ -1,6 +1,7 @@
 import { TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CksSidebarService, CksRouteService } from '../../service';
+import { CksSidebarService } from '../../service/sidebar.service';
+import { CksRouteService } from '../../service/route.service';
 export declare class CksSidebarComponent {
     private sidebarService;
     private routeService;

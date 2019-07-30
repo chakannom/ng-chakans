@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
-import { CksNavbarService, CksRouteService } from '../../service';
+import { CksNavbarService } from '../../service/navbar.service';
+import { CksRouteService } from '../../service/route.service';
 export declare class CksNavbarComponent {
     private navbarService;
     private routeService;
