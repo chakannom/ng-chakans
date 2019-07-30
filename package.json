@@ -67,26 +67,23 @@
     "zone.js": "0.9.1"
   },
   "$schema": "./node_modules/ng-packagr/package.schema.json",
-  "ngPackage": {
-    "lib": {
-      "entryFile": "src/main/public_api.ts"
-    }
-  },
   "lint-staged": {
     "{,src/**/}*.{md,json,ts,css,scss,yml}": [
       "prettier --write",
       "git add"
     ]
   },
-  "scripts": {
-    "cleanup": "rimraf dist/*",
-    "format": "prettier --write \"{,src/**/}*.{md,json,ts,css,scss,yml}\"",
-    "lint": "tslint --project tsconfig.json -e 'node_modules/**'",
-    "lint:fix": "npm run lint -- --fix",
-    "test": "npm run lint && jest --config src/test/jest.conf.js",
-    "test:watch": "npm run test -- --watch",
-    "themes": "bundle-scss -m \"./src/main/**/*.scss\" -d \"./dist/scss/ng-chakans.scss\"",
-    "build": "npm run cleanup && ng-packagr -p package.json && npm run themes",
-    "release": "git push && git push --tags && npm publish dist/"
+  "main": "bundles/ng-chakans.umd.js",
+  "module": "fesm5/ng-chakans.js",
+  "es2015": "fesm2015/ng-chakans.js",
+  "esm5": "esm5/ng-chakans.js",
+  "esm2015": "esm2015/ng-chakans.js",
+  "fesm5": "fesm5/ng-chakans.js",
+  "fesm2015": "fesm2015/ng-chakans.js",
+  "typings": "ng-chakans.d.ts",
+  "metadata": "ng-chakans.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
   }
 }
