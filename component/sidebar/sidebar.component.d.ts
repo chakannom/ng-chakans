@@ -10,6 +10,10 @@ export declare class CksSidebarComponent {
     footerTemplate: TemplateRef<any>;
     menuItems: any[];
     isSidebarViewed: Observable<boolean>;
+    isSidebarCollapsed: boolean;
     constructor(sidebarService: CksSidebarService, routeService: CksRouteService);
     doAction(navigation: any): void;
+    collapseSidebar(): void;
+    toggleSidebar(): void;
+    isUsedRouterLink(navigation: any): boolean;
 }
