@@ -431,26 +431,6 @@
                         provide: CksRouteService,
                         useClass: CksRouteService,
                         deps: [router.Router]
-                    },
-                    {
-                        provide: CksActiveLanguageDirective,
-                        useClass: CksActiveLanguageDirective,
-                        deps: [core.ElementRef, core.Renderer2, core$1.TranslateService]
-                    },
-                    {
-                        provide: CksNavbarComponent,
-                        useClass: CksNavbarComponent,
-                        deps: [CksNavbarService, CksRouteService]
-                    },
-                    {
-                        provide: CksPageRibbonComponent,
-                        useClass: CksPageRibbonComponent,
-                        deps: [CksProfileService]
-                    },
-                    {
-                        provide: CksSidebarComponent,
-                        useClass: CksSidebarComponent,
-                        deps: [CksSidebarService, CksRouteService]
                     }
                 ]
             };

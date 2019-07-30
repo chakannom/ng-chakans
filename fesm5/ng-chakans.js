@@ -376,26 +376,6 @@ var NgChakansModule = /** @class */ (function () {
                     provide: CksRouteService,
                     useClass: CksRouteService,
                     deps: [Router]
-                },
-                {
-                    provide: CksActiveLanguageDirective,
-                    useClass: CksActiveLanguageDirective,
-                    deps: [ElementRef, Renderer2, TranslateService]
-                },
-                {
-                    provide: CksNavbarComponent,
-                    useClass: CksNavbarComponent,
-                    deps: [CksNavbarService, CksRouteService]
-                },
-                {
-                    provide: CksPageRibbonComponent,
-                    useClass: CksPageRibbonComponent,
-                    deps: [CksProfileService]
-                },
-                {
-                    provide: CksSidebarComponent,
-                    useClass: CksSidebarComponent,
-                    deps: [CksSidebarService, CksRouteService]
                 }
             ]
         };
