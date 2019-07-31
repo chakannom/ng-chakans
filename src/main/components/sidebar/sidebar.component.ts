@@ -1,7 +1,7 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CksSidebarService } from '../../service/sidebar.service';
-import { CksRouteService } from '../../service/route.service';
+import { CksSidebarService } from '../../services/sidebar.service';
+import { CksRouteService } from '../../services/route.service';
 
 @Component({
   selector: 'cks-sidebar',

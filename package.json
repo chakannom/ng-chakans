@@ -63,6 +63,7 @@
     "rxjs": "6.5.2",
     "tsickle": "0.35.0",
     "tslint": "5.16.0",
+    "tslint-config-prettier": "1.18.0",
     "typescript": "3.4.5",
     "zone.js": "0.9.1"
   },
@@ -80,7 +81,7 @@
   },
   "scripts": {
     "cleanup": "rimraf dist/*",
-    "format": "prettier --write \"{,src/**/}*.{md,json,ts,css,scss,yml}\"",
+    "format": "prettier --write \"{,src/**/}*.{md,json,js,ts,css,scss,yml}\"",
     "lint": "tslint --project tsconfig.json -e 'node_modules/**'",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint && jest --config src/test/jest.conf.js",

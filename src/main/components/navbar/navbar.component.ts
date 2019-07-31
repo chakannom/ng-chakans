@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CksNavbarService } from '../../service/navbar.service';
-import { CksRouteService } from '../../service/route.service';
+import { CksNavbarService } from '../../services/navbar.service';
+import { CksRouteService } from '../../services/route.service';
 
 @Component({
   selector: 'cks-navbar',
