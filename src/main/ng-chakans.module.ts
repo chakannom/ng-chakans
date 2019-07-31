@@ -6,9 +6,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CksModuleConfig } from './config';
 import { CksConfigService } from './config.service';
 import { CKS_COMPONENTS, CKS_DIRECTIVES } from './cks-components';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, NgbModule, FontAwesomeModule, TranslateModule],
+  imports: [CommonModule, FontAwesomeModule, NgbModule, RouterModule, TranslateModule],
   declarations: [...CKS_DIRECTIVES, ...CKS_COMPONENTS],
   entryComponents: [],
   exports: [...CKS_DIRECTIVES, ...CKS_COMPONENTS, TranslateModule]

@@ -12,24 +12,10 @@
 <ng-template #sidebarContent let-items="items">
     <ul class="sidebar-menu" *ngIf="items">
         <li *ngFor="let item of items">
-            <a (click)="doAction(item.navigation)">
-                <span>
-                    <fa-layers [fixedWidth]="true" *ngIf="item.icon && item.icon.length > 0">
-                        <fa-icon [icon]="item.icon"></fa-icon>
-                    </fa-layers>
-                    <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>
-                </span>
-            </a>
+            <ng-template [ngTemplateOutlet]="isUsedRouterLink(item.navigation) ? routerLink : nonRouterLink" [ngTemplateOutletContext]="{ item: item }"></ng-template>
             <ul class="sidebar-sub-menu" *ngIf="item.subItems && item.subItems.length > 0">
                 <li *ngFor="let subItem of item.subItems">
-                    <a (click)="doAction(subItem.navigation)">
-                        <span>
-                            <fa-layers [fixedWidth]="true" *ngIf="subItem.icon && subItem.icon.length > 0">
-                                <fa-icon [icon]="subItem.icon"></fa-icon>
-                            </fa-layers>
-                            <span>{{ !subItem.name.translateKey ? subItem.name.label : (subItem.name.translateKey | translate) }}</span>
-                        </span>
-                    </a>
+                    <ng-template [ngTemplateOutlet]="isUsedRouterLink(subItem.navigation) ? routerLink : nonRouterLink" [ngTemplateOutletContext]="{ item: subItem }"></ng-template>
                     <a class="btn btn-secondary btn-sm" (click)="doAction(subItem.ext.navigation)" *ngIf="subItem.ext">
                         <fa-layers *ngIf="subItem.ext.icon && subItem.ext.icon.length > 0">
                             <fa-icon [icon]="subItem.ext.icon"></fa-icon>
@@ -39,4 +25,24 @@
             </ul>
         </li>
     </ul>
+</ng-template>
+<ng-template #nonRouterLink let-item="item">
+    <a (click)="doAction(item.navigation)">
+        <span>
+            <fa-layers [fixedWidth]="true" *ngIf="item.icon && item.icon.length > 0">
+                <fa-icon [icon]="item.icon"></fa-icon>
+            </fa-layers>
+            <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>
+        </span>
+    </a>
+</ng-template>
+<ng-template #routerLink let-item="item">
+    <a [routerLink]="item.navigation.routerLink" [queryParams]="item.navigation.queryParams" [fragment]="item.navigation.fragment">
+        <span>
+            <fa-layers [fixedWidth]="true" *ngIf="item.icon && item.icon.length > 0">
+                <fa-icon [icon]="item.icon"></fa-icon>
+            </fa-layers>
+            <span>{{ !item.name.translateKey ? item.name.label : (item.name.translateKey | translate) }}</span>
+        </span>
+    </a>
 </ng-template>

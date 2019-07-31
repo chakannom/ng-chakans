@@ -36,4 +36,11 @@ export class CksNavbarComponent {
   toggleNavbar() {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
+
+  isUsedRouterLink(navigation: any) {
+    if (!navigation || typeof navigation === 'function' || typeof navigation === 'string') {
+      return false;
+    }
+    return true;
+  }
 }

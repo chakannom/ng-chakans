@@ -13,12 +13,15 @@ export class CksSidebarComponent {
   @Input() footerTemplate: TemplateRef<any>;
   @Input() menuItems: any[];
   isSidebarViewed: Observable<boolean>;
+  isSidebarCollapsed: boolean;
 
   constructor(private sidebarService: CksSidebarService, private routeService: CksRouteService) {
+    this.isSidebarCollapsed = true;
     this.isSidebarViewed = this.sidebarService.isSidebarViewed;
   }
 
   doAction(navigation: any) {
+    this.collapseSidebar();
     if (navigation) {
       if (typeof navigation === 'function') {
         navigation();
@@ -26,5 +29,20 @@ export class CksSidebarComponent {
         this.routeService.navigate(navigation);
       }
     }
+  }
+
+  collapseSidebar() {
+    this.isSidebarCollapsed = true;
+  }
+
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
+
+  isUsedRouterLink(navigation: any) {
+    if (!navigation || typeof navigation === 'function' || typeof navigation === 'string') {
+      return false;
+    }
+    return true;
   }
 }
