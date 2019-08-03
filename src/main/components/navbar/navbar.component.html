@@ -19,7 +19,7 @@
     </li>
 </ng-template>
 <ng-template #dropdown let-item="item">
-    <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="{{ item.id }}">
             <span>
                 <fa-layers [fixedWidth]="true" *ngIf="item.icon && item.icon.length > 0">
