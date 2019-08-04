@@ -15,10 +15,44 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.brand = {
       title: {
-        label: 'NgChakansModule',
-        translateKey: 'global.title'
+        label: 'NgChakansModule'
       },
       version: 'vUNKNOWN'
     };
+    this.menuItems = [
+      {
+        navigation: {
+          routerLink: ['/navbar']
+        },
+        icon: ['fa', 'home'],
+        name: {
+          label: 'Home'
+        }
+      },
+      {
+        id: 'home-menu',
+        icon: ['fa', 'home'],
+        name: {
+          label: 'Home'
+        },
+        subItems: [
+          {
+            navigation: {
+              routerLink: ['/navbar']
+            },
+            icon: ['fa', 'home'],
+            name: {
+              label: 'Home'
+            }
+          },
+          {
+            icon: ['fa', 'home'],
+            name: {
+              label: 'Home'
+            }
+          }
+        ]
+      }
+    ];
   }
 }
