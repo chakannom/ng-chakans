@@ -3,11 +3,22 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: '[cks-navbar]',
   template: `
-    <cks-navbar></cks-navbar>
+    <cks-navbar [brand]="brand" [menuItems]="menuItems"></cks-navbar>
   `
 })
 export class NavbarComponent implements OnInit {
+  brand: any;
+  menuItems: any[];
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.brand = {
+      title: {
+        label: 'NgChakansModule',
+        translateKey: 'global.title'
+      },
+      version: 'vUNKNOWN'
+    };
+  }
 }

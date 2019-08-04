@@ -1,0 +1,6 @@
+diff a/src/demo/app/app-routing.module.ts b/src/demo/app/app-routing.module.ts	(rejected hunks)
+@@ -5,3 +5 @@ import { RouterModule } from '@angular/router';
+-  imports: [
+-    RouterModule.forRoot([], { enableTracing: true })
+-  ],
++  imports: [RouterModule.forRoot([], { enableTracing: true })],

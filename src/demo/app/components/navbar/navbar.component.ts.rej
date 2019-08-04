@@ -1,0 +1,8 @@
+diff a/src/demo/app/components/navbar/navbar.component.ts b/src/demo/app/components/navbar/navbar.component.ts	(rejected hunks)
+@@ -11,5 +12 @@ export class NavbarComponent implements OnInit {
+-  constructor(
+-  ) {}
+-
+-  ngOnInit() {
+-  }
++  ngOnInit() {}
