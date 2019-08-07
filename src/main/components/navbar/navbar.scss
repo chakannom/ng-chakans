@@ -25,6 +25,8 @@ Navbar styles
   }
 }
 .navbar-version {
+  position: absolute;
+  top: 0;
   font-size: 0.65em;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -39,6 +41,10 @@ Logo styles
   .navbar-brand {
     color: #fff !important;
   }
+  .sidebar-toggler {
+    color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
 }
 .logo-img {
   height: 42px;
@@ -48,4 +54,19 @@ Logo styles
 }
 .navbar-title {
   vertical-align: middle;
+}
+/* ==========================================================================
+Sidebar toggler styles
+========================================================================== */
+.sidebar-toggler {
+  position: absolute;
+  top: 0.7969rem;
+  margin-left: 11.5625rem;
+  margin-right: auto;
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.15rem;
 }

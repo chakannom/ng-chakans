@@ -4,6 +4,9 @@
         <span class="navbar-title">{{ !brand.title.translateKey ? brand.title.label : (brand.title.translateKey | translate) }}</span>
         <span class="navbar-version" *ngIf="brand.version">{{ brand.version }}</span>
     </a>
+    <a class="sidebar-toggler" href="javascript:void(0);" data-toggle="collapse" data-target="#sidearResponsive" aria-controls="sidebarResponsive" aria-expanded="false" aria-label="Toggle sidebar" (click)="toggleSidebar()" *ngIf="sidebarToggler && sidebarToggler.isCollapsed !== undefined">
+        <fa-icon icon="bars"></fa-icon>
+    </a>
     <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
         <fa-icon icon="bars"></fa-icon>
     </a>
