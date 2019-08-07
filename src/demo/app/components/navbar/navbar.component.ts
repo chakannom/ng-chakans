@@ -4,13 +4,12 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: '[cks-navbar]',
   template: `
-    <cks-navbar [brand]="brand" [menuItems]="menuItems" [sidebarToggler]="sidebarToggler"></cks-navbar>
+    <cks-navbar [brand]="brand" [menuItems]="menuItems"></cks-navbar>
   `
 })
 export class NavbarComponent implements OnInit {
   brand: any;
   menuItems: any[];
-  sidebarToggler: any;
 
   constructor(translate: TranslateService) {
     translate.setDefaultLang('ko');
@@ -63,9 +62,5 @@ export class NavbarComponent implements OnInit {
         ]
       }
     ];
-    this.sidebarToggler = {
-      //   marginLeft: '11.5625rem',  // <- working
-      isCollapsed: false
-    };
   }
 }

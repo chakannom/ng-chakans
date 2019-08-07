@@ -10,7 +10,6 @@ import { CksRouteService } from '../../services/route.service';
 export class CksNavbarComponent {
   @Input() brand: any;
   @Input() menuItems: any[];
-  @Input() sidebarToggler: any;
   isNavbarViewed: Observable<boolean>;
   isNavbarCollapsed: boolean;
 
@@ -36,10 +35,6 @@ export class CksNavbarComponent {
 
   toggleNavbar() {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
-  }
-
-  toggleSidebar() {
-    this.sidebarToggler.isCollapsed = !this.sidebarToggler.isCollapsed;
   }
 
   isUsedRouterLink(navigation: any) {
