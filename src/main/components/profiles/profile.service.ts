@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { CksProfileInfo } from '../models/profile-info.model';
-import { CksConfigService } from '../config.service';
+import { CksProfileInfo } from './profile-info.model';
+import { CksConfigService } from '../../config.service';
 
 @Injectable({ providedIn: 'root' })
 export class CksProfileService {

@@ -1,6 +1,6 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CksSidebarService } from '../../services/sidebar.service';
+import { CksSidebarService } from './sidebar.service';
 import { CksRouteService } from '../../services/route.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CksNavbarService } from '../../services/navbar.service';
+import { CksNavbarService } from './navbar.service';
 import { CksRouteService } from '../../services/route.service';
 
 @Component({

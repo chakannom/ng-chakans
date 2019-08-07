@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CksProfileService } from '../../services/profile.service';
-import { CksProfileInfo } from '../../models/profile-info.model';
+import { CksProfileService } from './profile.service';
+import { CksProfileInfo } from './profile-info.model';
 
 @Component({
   selector: 'cks-page-ribbon',
