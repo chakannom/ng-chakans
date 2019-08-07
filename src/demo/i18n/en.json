@@ -1,5 +1,8 @@
 {
   "global": {
-    "title": "NgChakansModule"
+    "title": "NgChakansModule",
+    "navbar": {
+      "home": "Home"
+    }
   }
 }

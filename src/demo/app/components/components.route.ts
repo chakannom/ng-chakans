@@ -3,7 +3,7 @@ import { NAVBAR_ROUTE } from './';
 
 export const COMPONENTS_ROUTES: Routes = [
   {
-    path: '',
+    path: 'components',
     children: [NAVBAR_ROUTE]
   }
 ];
