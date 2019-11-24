@@ -75,8 +75,8 @@
         "named": "never"
       }
     ],
-    "directive-selector": [true, "attribute", ["cks"], "camelCase"],
-    "component-selector": [true, ["element", "attribute"], ["cks"], "kebab-case"],
+    "directive-selector": [true, "attribute", ["cks", ""], "camelCase"],
+    "component-selector": [true, ["element", "attribute"], ["cks", ""], "kebab-case"],
     "no-inputs-metadata-property": true,
     "no-outputs-metadata-property": true,
     "no-host-metadata-property": true,

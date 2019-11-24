@@ -3,6 +3,13 @@
     "title": "NgChakansModule",
     "navbar": {
       "home": "Home"
+    },
+    "topbar": {
+      "home": "Home",
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "settings": "Settings",
+      "tasks": "Tasks"
     }
   }
 }

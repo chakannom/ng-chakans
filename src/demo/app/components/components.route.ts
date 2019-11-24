@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { NAVBAR_ROUTE } from './';
+import { NAVBAR_ROUTE, TOPBAR_ROUTE } from './';
 
 export const COMPONENTS_ROUTES: Routes = [
   {
     path: 'components',
-    children: [NAVBAR_ROUTE]
+    children: [NAVBAR_ROUTE, TOPBAR_ROUTE]
   }
 ];

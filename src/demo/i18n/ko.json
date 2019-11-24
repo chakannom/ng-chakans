@@ -3,6 +3,13 @@
     "title": "NgChakansModule",
     "navbar": {
       "home": "홈"
+    },
+    "topbar": {
+      "home": "홈",
+      "dashboard": "대시보드",
+      "users": "사용자",
+      "settings": "설정",
+      "tasks": "작업"
     }
   }
 }
