@@ -37,7 +37,7 @@ Topbar styles
       display: flex;
       -ms-flex-align: center;
       align-items: center;
-      padding: 0 0.5rem;
+      padding: 0.5rem 1rem;
       cursor: pointer;
       .cks-icon {
         font-size: 1rem;
@@ -46,7 +46,7 @@ Topbar styles
     .nav-button {
       font-size: 20px;
       background-color: transparent;
-      border: 1px solid transparent;
+      border: 0;
     }
   }
   .profile-icon {

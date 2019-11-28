@@ -10,25 +10,25 @@
     <fa-icon icon="bars"></fa-icon>
 </button>
 <ul class="nav navbar-nav d-none d-lg-flex">
-    <li class="nav-item px-3" *ngFor="let tItem of textItems">
+    <li class="nav-item px-2" *ngFor="let tItem of textItems">
         <a class="nav-link" (click)="doAction(tItem.navigation)">
             {{ !tItem.name.translateKey ? tItem.name.label : (tItem.name.translateKey | translate) }}
         </a>
     </li>
 </ul>
 <ul class="nav navbar-nav ml-auto">
-    <li class="nav-item mx-2" *ngFor="let iItem of iconItems">
+    <li class="nav-item" *ngFor="let iItem of iconItems">
         <a class="nav-link" (click)="doAction(iItem.navigation)" placement="bottom" ngbTooltip="{{ iItem.tooltip ? (!iItem.tooltip.translateKey ? iItem.tooltip.label : (iItem.tooltip.translateKey | translate)) : undefined }}">
             <fa-icon [icon]="iItem.icon" class="cks-icon"></fa-icon>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link">
+        <a class="nav-link py-0 px-2">
             <fa-icon icon="user-circle" class="profile-icon" *ngIf="!userImgUrl"></fa-icon>
             <img [src]="userImgUrl" class="profile-image rounded-circle" alt="Avatar" *ngIf="userImgUrl">
         </a>
     </li>
-    <li class="nav-item px-3">
+    <li class="nav-item pr-1">
         <button class="nav-button" type="button">
             <fa-icon icon="ellipsis-h"></fa-icon>
         </button>
