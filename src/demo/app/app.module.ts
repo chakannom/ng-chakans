@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgChakansModule } from '../../main/public_api';
 import { NgChakansHomeModule } from './home/home.module';
 import { NgChakansComponentsModule } from './components/components.module';
-import { CksMainComponent } from './layouts';
+import { MainComponent } from './layouts';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -35,9 +35,9 @@ export function translatePartialLoader(http: HttpClient) {
     NgChakansHomeModule,
     NgChakansComponentsModule
   ],
-  declarations: [CksMainComponent],
+  declarations: [MainComponent],
   providers: [],
-  bootstrap: [CksMainComponent]
+  bootstrap: [MainComponent]
 })
 export class NgChakansAppModule {
   constructor(iconLibrary: FaIconLibrary) {

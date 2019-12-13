@@ -4,12 +4,25 @@ Sidebar styles
 .sidebar {
   position: fixed;
   height: 100vh;
-  border-right: 0.0625em solid #c6cfd6;
-  width: 15.625em;
+  width: 255px;
   overflow: auto;
   padding: 0;
-  background: #dbe2e6;
   z-index: 100;
+  .sidebar-brand {
+    background: rgba(0, 0, 21, 0.2);
+  }
+}
+.sidebar-brand {
+  height: 56px;
+  padding: 6px 0;
+  .sidebar-brand-text {
+    font-size: 20px;
+  }
+}
+.bg-dark {
+  .sidebar-brand-text {
+    color: rgba(255, 255, 255, 0.8);
+  }
 }
 .sidebar-header {
   padding: 0.625em;

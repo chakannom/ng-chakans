@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'cks-main',
   templateUrl: './main.component.html'
 })
-export class CksMainComponent implements OnInit {
+export class MainComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
