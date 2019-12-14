@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, HostBinding } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CksSidebarService } from './sidebar.service';
 import { CksRouteService } from '../../services/route.service';
@@ -8,6 +8,8 @@ import { CksRouteService } from '../../services/route.service';
   templateUrl: './sidebar.component.html'
 })
 export class CksSidebarComponent {
+  @HostBinding('class.cks-sidebar') _header = true;
+
   @Input() headerTemplate: TemplateRef<any>;
   @Input() contentTemplate: TemplateRef<any>;
   @Input() footerTemplate: TemplateRef<any>;
