@@ -8,6 +8,7 @@ import { CksRouteService } from '../../services/route.service';
 })
 export class CksTopbarComponent implements OnInit, OnDestroy {
   @Input() fixed: boolean;
+  @Input() withSidebar: boolean;
   @Input() textItems: any[];
   @Input() iconItems: any[];
   @Input() userImgUrl: string;
@@ -17,12 +18,14 @@ export class CksTopbarComponent implements OnInit, OnDestroy {
   @HostBinding('class.cks-header') _header = true;
   @HostBinding('class.fixed-top') _fixedTop = false;
   @HostBinding('class.position-fixed') _positionFixed = false;
+  @HostBinding('class.cks-header-with-sidebar') _withSidebar = false;
   @HostBinding('class.cks-header-with-subheader') _withSubHeader = false;
 
   constructor(@Inject(DOCUMENT) private document: any, private renderer: Renderer2, private routeService: CksRouteService) {}
 
   ngOnInit(): void {
     this._fixedTop = this._positionFixed = this.fixed;
+    this._withSidebar = this.withSidebar;
     this._withSubHeader = this.withSubheader;
     this.textItems = this.textItems ? this.textItems.slice(0, 3) : [];
     this.iconItems = this.iconItems ? this.iconItems.slice(0, 6) : [];

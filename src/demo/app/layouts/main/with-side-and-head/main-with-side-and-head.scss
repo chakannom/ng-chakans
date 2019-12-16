@@ -1,0 +1,14 @@
+.cks-main-with-side {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  @media (min-width: 992px) {
+    margin-left: 255px;
+  }
+}
+.cks-body-with-head {
+  padding-top: 104px;
+}

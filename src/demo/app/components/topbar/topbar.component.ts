@@ -12,8 +12,9 @@ import { TranslateService } from '@ngx-translate/core';
       [breadcrumbItems]="breadcrumbItems"
     ></cks-topbar>
     <br /><br /><br /><br /><br /><br />
-    <cks-topbar [fixed]="false" [textItems]="textItems" [iconItems]="iconItems" [withSubheader]="false"></cks-topbar>
-    <br /><br /><br /><br /><br /><br />
+    <cks-topbar [textItems]="textItems" [iconItems]="iconItems"></cks-topbar>
+    <br />
+    <cks-topbar [withSidebar]="true" [textItems]="textItems" [iconItems]="iconItems"></cks-topbar>
   `
 })
 export class TopbarComponent implements OnInit {

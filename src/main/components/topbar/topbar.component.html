@@ -1,14 +1,16 @@
-<button class="navbar-toggler d-lg-none mr-auto" type="button">
-    <fa-icon icon="bars"></fa-icon>
-</button>
-<!-- <a class="navbar-brand logo">
-    <span class="logo-img"></span>
-    <span class="navbar-title">ChaKanS</span>
-    <span class="navbar-version">0.0.1</span>
-</a> -->
-<button class="navbar-toggler d-none d-lg-block ml-3" type="button">
-    <fa-icon icon="bars"></fa-icon>
-</button>
+<div class="d-flex" [ngSwitch]="withSidebar">
+    <button  class="navbar-toggler d-lg-none mr-auto" type="button" *ngSwitchCase="true">
+        <fa-icon icon="bars"></fa-icon>
+    </button>
+    <a class="cks-header-brand">
+        <span class="cks-header-logo-img"></span>
+        <span class="cks-header-brand-text">Gooroom</span>
+        <span class="cks-header-version">vUNKNOWN</span>
+    </a>
+    <button class="navbar-toggler d-none d-lg-block ml-3" type="button" *ngSwitchCase="true">
+        <fa-icon icon="bars"></fa-icon>
+    </button>
+</div>
 <ul class="nav navbar-nav d-none d-lg-flex">
     <li class="nav-item px-2" *ngFor="let tItem of textItems">
         <a class="nav-link" (click)="doAction(tItem.navigation)">

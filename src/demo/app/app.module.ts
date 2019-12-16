@@ -2,10 +2,10 @@ import './vendor.ts';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgChakansModule } from '../../main/public_api';
+import { NgChakansAppRoutingModule } from './app-routing.module';
 import { NgChakansHomeModule } from './home/home.module';
 import { NgChakansComponentsModule } from './components/components.module';
 import { MainComponent } from './layouts';
@@ -14,6 +14,8 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fontAwesomeIcons } from './font-awesome-icons';
+import { MainWithHeadComponent } from './layouts/main/with-head/main-with-head.component';
+import { MainWithSideAndHeadComponent } from './layouts/main/with-side-and-head/main-with-side-and-head.component';
 
 export function translatePartialLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'i18n/', `.json`);
@@ -23,7 +25,6 @@ export function translatePartialLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot([], { enableTracing: true }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -32,10 +33,11 @@ export function translatePartialLoader(http: HttpClient) {
       }
     }),
     NgChakansModule.forRoot({ serverApiUrl: '/' }),
+    NgChakansAppRoutingModule,
     NgChakansHomeModule,
     NgChakansComponentsModule
   ],
-  declarations: [MainComponent],
+  declarations: [MainComponent, MainWithHeadComponent, MainWithSideAndHeadComponent],
   providers: [],
   bootstrap: [MainComponent]
 })
