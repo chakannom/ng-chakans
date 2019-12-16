@@ -3,4 +3,4 @@
  */
 export * from './public_api';
 export { CKS_COMPONENTS as ɵa, CKS_DIRECTIVES as ɵb } from './cks-components';
-export { CksActiveLanguageDirective as ɵc } from './directive/active-language.directive';
+export { CksActiveLanguageDirective as ɵc } from './directives/active-language.directive';

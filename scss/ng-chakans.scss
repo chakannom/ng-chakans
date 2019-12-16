@@ -1,16 +1,44 @@
 /* ==========================================================================
 Sidebar styles
 ========================================================================== */
-.sidebar {
+.cks-sidebar {
   position: fixed;
   height: 100vh;
-  border-right: 0.0625em solid #c6cfd6;
-  width: 15.625em;
+  width: 255px;
   overflow: auto;
   padding: 0;
-  background: #dbe2e6;
   z-index: 100;
+  background-color: #343a40;
+  margin-left: -260px;
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  @media (min-width: 992px) {
+    margin-left: 0;
+  }
 }
+.cks-sidebar-brand {
+  height: 56px;
+  padding: 7px 8px;
+  background: rgba(0, 0, 21, 0.2);
+}
+.cks-sidebar-logo-img {
+  height: 42px;
+  width: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.cks-sidebar-brand-text {
+  font-size: 20px;
+  vertical-align: middle;
+  color: rgba(255, 255, 255, 0.8);
+}
+.cks-sidebar-version {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .sidebar-header {
   padding: 0.625em;
 }
@@ -93,6 +121,135 @@ Sidebar styles
         color: #fff !important;
         text-decoration: none !important;
       }
+    }
+  }
+}
+/* ==========================================================================
+Topbar styles
+========================================================================== */
+.cks-header {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  height: 56px;
+  background: #fff;
+  border-bottom: 1px solid #d8dbe0;
+  &.cks-header-with-sidebar {
+    @media (min-width: 576px) {
+      .cks-header-brand {
+        display: none !important;
+      }
+    }
+  }
+  &.cks-header-with-subheader {
+    height: 104px;
+  }
+  .navbar-toggler {
+    min-width: 50px;
+    font-size: 1.09375rem;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0.25rem;
+    color: rgba(0, 0, 21, 0.5);
+    border-color: rgba(0, 0, 21, 0.1);
+  }
+  .cks-header-brand {
+    height: 56px;
+    padding: 7px 8px;
+    margin-right: 16px;
+  }
+  .cks-header-logo-img {
+    height: 42px;
+    width: 16px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .cks-header-brand-text {
+    font-size: 20px;
+    vertical-align: middle;
+  }
+  .cks-header-version {
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .navbar-nav {
+    height: 56px;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    .nav-link,
+    .nav-button {
+      color: rgba(0, 0, 21, 0.5);
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      .cks-icon {
+        font-size: 1rem;
+      }
+    }
+    .nav-button {
+      font-size: 20px;
+      background-color: transparent;
+      border: 0;
+    }
+  }
+  .profile-icon {
+    font-size: 34px;
+  }
+  .profile-image {
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+  }
+  .cks-subheader {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 100%;
+    height: 48px;
+    border-top: 1px solid #d8dbe0;
+    .breadcrumb {
+      .breadcrumb-item {
+        &:not(.active) {
+          a {
+            cursor: pointer;
+            color: #007bff;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.cks-body:not(.cks-dark-theme) {
+  .cks-header {
+    &.position-fixed {
+      border: 0;
+      box-shadow: 0 2px 2px 0 rgba(60, 75, 100, 0.14), 0 3px 1px -2px rgba(60, 75, 100, 0.12), 0 1px 5px 0 rgba(60, 75, 100, 0.2);
+      margin: inherit;
     }
   }
 }

@@ -1,5 +1,5 @@
-import * as tslib_1 from "tslib";
 var NgChakansModule_1;
+import * as tslib_1 from "tslib";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
