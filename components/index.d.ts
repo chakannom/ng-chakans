@@ -1,4 +1,3 @@
-export * from './dynamic/dynamic.component';
 export * from './navbar/navbar.component';
 export * from './navbar/navbar.service';
 export * from './profiles/page-ribbon.component';

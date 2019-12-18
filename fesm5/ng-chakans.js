@@ -1,36 +1,13 @@
 import { __decorate, __assign, __param, __spread } from 'tslib';
-import { ViewChild, ViewContainerRef, Component, ɵɵdefineInjectable, Injectable, ɵɵinject, Input, HostBinding, Inject, Renderer2, ElementRef, Directive, NgModule } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ɵɵdefineInjectable, Injectable, ɵɵinject, Input, Component, HostBinding, Inject, Renderer2, ElementRef, Directive, NgModule } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
-
-var CksDynamicComponent = /** @class */ (function () {
-    function CksDynamicComponent(route) {
-        this.route = route;
-    }
-    CksDynamicComponent.prototype.ngOnInit = function () {
-        var componentFactory = this.route.snapshot.data['factory'];
-        this.content.createComponent(componentFactory);
-    };
-    CksDynamicComponent.ctorParameters = function () { return [
-        { type: ActivatedRoute }
-    ]; };
-    __decorate([
-        ViewChild('content', { read: ViewContainerRef, static: true })
-    ], CksDynamicComponent.prototype, "content", void 0);
-    CksDynamicComponent = __decorate([
-        Component({
-            selector: 'cks-dynamic',
-            template: "<div class=\"cks-dynamic\" #content></div>\n"
-        })
-    ], CksDynamicComponent);
-    return CksDynamicComponent;
-}());
 
 var CksNavbarService = /** @class */ (function () {
     function CksNavbarService() {
@@ -446,13 +423,7 @@ var CksActiveLanguageDirective = /** @class */ (function () {
     return CksActiveLanguageDirective;
 }());
 
-var CKS_COMPONENTS = [
-    CksDynamicComponent,
-    CksNavbarComponent,
-    CksPageRibbonComponent,
-    CksSidebarComponent,
-    CksTopbarComponent
-];
+var CKS_COMPONENTS = [CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent, CksTopbarComponent];
 var CKS_DIRECTIVES = [CksActiveLanguageDirective];
 var CKS_LAYOUTS = [CksMainWithSideAndHeadComponent];
 
@@ -484,7 +455,7 @@ var NgChakansModule = /** @class */ (function () {
         NgModule({
             imports: [CommonModule, FontAwesomeModule, NgbModule, RouterModule, TranslateModule],
             declarations: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS),
-            entryComponents: [CksDynamicComponent, CksMainWithSideAndHeadComponent],
+            entryComponents: [CksMainWithSideAndHeadComponent],
             exports: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS, [TranslateModule])
         })
     ], NgChakansModule);
@@ -549,5 +520,5 @@ var CksSubscriptionManager = /** @class */ (function () {
  * Generated bundle index. Do not edit.
  */
 
-export { CksConfigService, CksDynamicComponent, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, CKS_COMPONENTS as ɵa, CKS_DIRECTIVES as ɵb, CKS_LAYOUTS as ɵc, CksActiveLanguageDirective as ɵd, CksDynamicComponent as ɵe, CksMainWithSideAndHeadComponent as ɵf };
+export { CksConfigService, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, CKS_COMPONENTS as ɵa, CKS_DIRECTIVES as ɵb, CKS_LAYOUTS as ɵc, CksActiveLanguageDirective as ɵd, CksMainWithSideAndHeadComponent as ɵe };
 //# sourceMappingURL=ng-chakans.js.map

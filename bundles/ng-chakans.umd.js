@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('rxjs'), require('@angular/common/http'), require('rxjs/operators'), require('@angular/common'), require('@ng-bootstrap/ng-bootstrap'), require('@fortawesome/angular-fontawesome'), require('@ngx-translate/core')) :
-    typeof define === 'function' && define.amd ? define('ng-chakans', ['exports', '@angular/core', '@angular/router', 'rxjs', '@angular/common/http', 'rxjs/operators', '@angular/common', '@ng-bootstrap/ng-bootstrap', '@fortawesome/angular-fontawesome', '@ngx-translate/core'], factory) :
-    (global = global || self, factory(global['ng-chakans'] = {}, global.ng.core, global.ng.router, global.rxjs, global.ng.common.http, global.rxjs.operators, global.ng.common, global.ngBootstrap, global.angularFontawesome, global.core$1));
-}(this, (function (exports, core, router, rxjs, http, operators, common, ngBootstrap, angularFontawesome, core$1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@angular/router'), require('@angular/common/http'), require('rxjs/operators'), require('@angular/common'), require('@ng-bootstrap/ng-bootstrap'), require('@fortawesome/angular-fontawesome'), require('@ngx-translate/core')) :
+    typeof define === 'function' && define.amd ? define('ng-chakans', ['exports', '@angular/core', 'rxjs', '@angular/router', '@angular/common/http', 'rxjs/operators', '@angular/common', '@ng-bootstrap/ng-bootstrap', '@fortawesome/angular-fontawesome', '@ngx-translate/core'], factory) :
+    (global = global || self, factory(global['ng-chakans'] = {}, global.ng.core, global.rxjs, global.ng.router, global.ng.common.http, global.rxjs.operators, global.ng.common, global.ngBootstrap, global.angularFontawesome, global.core$1));
+}(this, (function (exports, core, rxjs, router, http, operators, common, ngBootstrap, angularFontawesome, core$1) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -200,29 +200,6 @@
     function __importDefault(mod) {
         return (mod && mod.__esModule) ? mod : { default: mod };
     }
-
-    var CksDynamicComponent = /** @class */ (function () {
-        function CksDynamicComponent(route) {
-            this.route = route;
-        }
-        CksDynamicComponent.prototype.ngOnInit = function () {
-            var componentFactory = this.route.snapshot.data['factory'];
-            this.content.createComponent(componentFactory);
-        };
-        CksDynamicComponent.ctorParameters = function () { return [
-            { type: router.ActivatedRoute }
-        ]; };
-        __decorate([
-            core.ViewChild('content', { read: core.ViewContainerRef, static: true })
-        ], CksDynamicComponent.prototype, "content", void 0);
-        CksDynamicComponent = __decorate([
-            core.Component({
-                selector: 'cks-dynamic',
-                template: "<div class=\"cks-dynamic\" #content></div>\n"
-            })
-        ], CksDynamicComponent);
-        return CksDynamicComponent;
-    }());
 
     var CksNavbarService = /** @class */ (function () {
         function CksNavbarService() {
@@ -638,13 +615,7 @@
         return CksActiveLanguageDirective;
     }());
 
-    var CKS_COMPONENTS = [
-        CksDynamicComponent,
-        CksNavbarComponent,
-        CksPageRibbonComponent,
-        CksSidebarComponent,
-        CksTopbarComponent
-    ];
+    var CKS_COMPONENTS = [CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent, CksTopbarComponent];
     var CKS_DIRECTIVES = [CksActiveLanguageDirective];
     var CKS_LAYOUTS = [CksMainWithSideAndHeadComponent];
 
@@ -676,7 +647,7 @@
             core.NgModule({
                 imports: [common.CommonModule, angularFontawesome.FontAwesomeModule, ngBootstrap.NgbModule, router.RouterModule, core$1.TranslateModule],
                 declarations: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS),
-                entryComponents: [CksDynamicComponent, CksMainWithSideAndHeadComponent],
+                entryComponents: [CksMainWithSideAndHeadComponent],
                 exports: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS, [core$1.TranslateModule])
             })
         ], NgChakansModule);
@@ -738,7 +709,6 @@
     }());
 
     exports.CksConfigService = CksConfigService;
-    exports.CksDynamicComponent = CksDynamicComponent;
     exports.CksMainWithSideAndHeadComponent = CksMainWithSideAndHeadComponent;
     exports.CksModuleConfig = CksModuleConfig;
     exports.CksNavbarComponent = CksNavbarComponent;
@@ -756,8 +726,7 @@
     exports.ɵb = CKS_DIRECTIVES;
     exports.ɵc = CKS_LAYOUTS;
     exports.ɵd = CksActiveLanguageDirective;
-    exports.ɵe = CksDynamicComponent;
-    exports.ɵf = CksMainWithSideAndHeadComponent;
+    exports.ɵe = CksMainWithSideAndHeadComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
