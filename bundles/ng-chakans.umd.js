@@ -726,7 +726,6 @@
     exports.ɵb = CKS_DIRECTIVES;
     exports.ɵc = CKS_LAYOUTS;
     exports.ɵd = CksActiveLanguageDirective;
-    exports.ɵe = CksMainWithSideAndHeadComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

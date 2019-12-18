@@ -520,5 +520,5 @@ var CksSubscriptionManager = /** @class */ (function () {
  * Generated bundle index. Do not edit.
  */
 
-export { CksConfigService, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, CKS_COMPONENTS as ɵa, CKS_DIRECTIVES as ɵb, CKS_LAYOUTS as ɵc, CksActiveLanguageDirective as ɵd, CksMainWithSideAndHeadComponent as ɵe };
+export { CksConfigService, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, CKS_COMPONENTS as ɵa, CKS_DIRECTIVES as ɵb, CKS_LAYOUTS as ɵc, CksActiveLanguageDirective as ɵd };
 //# sourceMappingURL=ng-chakans.js.map
