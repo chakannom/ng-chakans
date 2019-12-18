@@ -6,8 +6,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
 import { CksModuleConfig } from './config';
 import { CksConfigService } from './config.service';
-import { CksDynamicComponent } from './components';
-import { CksMainWithSideAndHeadComponent } from './layouts';
+import { CksDynamicComponent } from './components/dynamic/dynamic.component';
+import { CksMainWithSideAndHeadComponent } from './layouts/main/with-side-and-head/main-with-side-and-head.component';
 import { CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS } from './cks-components';
 
 @NgModule({
