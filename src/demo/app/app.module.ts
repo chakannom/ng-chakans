@@ -15,7 +15,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fontAwesomeIcons } from './font-awesome-icons';
 import { MainWithHeadComponent } from './layouts/main/with-head/main-with-head.component';
-import { MainWithSideAndHeadComponent } from './layouts/main/with-side-and-head/main-with-side-and-head.component';
+import { SidebarForLayoutComponent } from './layouts/sidebar/sidebar.component';
+import { TopbarForLayoutComponent } from './layouts/topbar/topbar.component';
 
 export function translatePartialLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'i18n/', `.json`);
@@ -37,7 +38,7 @@ export function translatePartialLoader(http: HttpClient) {
     NgChakansHomeModule,
     NgChakansComponentsModule
   ],
-  declarations: [MainComponent, MainWithHeadComponent, MainWithSideAndHeadComponent],
+  declarations: [MainComponent, MainWithHeadComponent, SidebarForLayoutComponent, TopbarForLayoutComponent],
   providers: [],
   bootstrap: [MainComponent]
 })

@@ -1,6 +1,6 @@
-<cks-sidebar></cks-sidebar>
+<router-outlet name="sidebar"></router-outlet>
 <div class="cks-main-with-side">
-    <cks-topbar [fixed]="true" [withSidebar]="true" [withSubheader]="true"></cks-topbar>
+    <router-outlet name="topbar"></router-outlet>
     <div class="cks-body-with-head">
         <router-outlet></router-outlet>
     </div>

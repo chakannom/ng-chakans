@@ -5,14 +5,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
 import { CksModuleConfig } from './config';
 import { CksConfigService } from './config.service';
-import { CKS_COMPONENTS, CKS_DIRECTIVES } from './cks-components';
+import { CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS } from './cks-components';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [CommonModule, FontAwesomeModule, NgbModule, RouterModule, TranslateModule],
-  declarations: [...CKS_DIRECTIVES, ...CKS_COMPONENTS],
+  declarations: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS],
   entryComponents: [],
-  exports: [...CKS_DIRECTIVES, ...CKS_COMPONENTS, TranslateModule]
+  exports: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS, TranslateModule]
 })
 export class NgChakansModule {
   static forRoot(moduleConfig: CksModuleConfig): ModuleWithProviders {
