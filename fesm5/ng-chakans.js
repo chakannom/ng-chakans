@@ -455,7 +455,7 @@ var NgChakansModule = /** @class */ (function () {
         NgModule({
             imports: [CommonModule, FontAwesomeModule, NgbModule, RouterModule, TranslateModule],
             declarations: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS),
-            entryComponents: [],
+            entryComponents: __spread(CKS_LAYOUTS),
             exports: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS, [TranslateModule])
         })
     ], NgChakansModule);

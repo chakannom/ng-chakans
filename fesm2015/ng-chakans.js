@@ -431,7 +431,7 @@ NgChakansModule = NgChakansModule_1 = __decorate([
     NgModule({
         imports: [CommonModule, FontAwesomeModule, NgbModule, RouterModule, TranslateModule],
         declarations: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS],
-        entryComponents: [],
+        entryComponents: [...CKS_LAYOUTS],
         exports: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS, TranslateModule]
     })
 ], NgChakansModule);

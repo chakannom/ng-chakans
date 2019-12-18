@@ -647,7 +647,7 @@
             core.NgModule({
                 imports: [common.CommonModule, angularFontawesome.FontAwesomeModule, ngBootstrap.NgbModule, router.RouterModule, core$1.TranslateModule],
                 declarations: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS),
-                entryComponents: [],
+                entryComponents: __spread(CKS_LAYOUTS),
                 exports: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS, [core$1.TranslateModule])
             })
         ], NgChakansModule);
