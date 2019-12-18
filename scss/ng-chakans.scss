@@ -1,128 +1,19 @@
 /* ==========================================================================
-Sidebar styles
+Main-With-Side-And-Head styles
 ========================================================================== */
-.cks-sidebar {
-  position: fixed;
-  height: 100vh;
-  width: 255px;
-  overflow: auto;
-  padding: 0;
-  z-index: 100;
-  background-color: #343a40;
-  margin-left: -260px;
-  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-  @media (min-width: 992px) {
-    margin-left: 0;
-  }
-}
-.cks-sidebar-brand {
-  height: 56px;
-  padding: 7px 8px;
-  background: rgba(0, 0, 21, 0.2);
-}
-.cks-sidebar-logo-img {
-  height: 42px;
-  width: 16px;
-  display: inline-block;
-  vertical-align: middle;
-}
-.cks-sidebar-brand-text {
-  font-size: 20px;
-  vertical-align: middle;
-  color: rgba(255, 255, 255, 0.8);
-}
-.cks-sidebar-version {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.sidebar-header {
-  padding: 0.625em;
-}
-.sidebar-content {
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
+.cks-main-with-side {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-overflow-scrolling: touch;
-}
-.sidebar-menu {
-  padding: 0;
-  margin: 0 0 1.5625em 0;
-  list-style: none;
-  a {
-    &:first-child {
-      span {
-        margin-left: 0.5em;
-        > span:first-child {
-          margin-left: 0;
-        }
-      }
-    }
-  }
-  fa-layers {
-    font-size: 1.5625em;
-    vertical-align: bottom;
-  }
-  > li {
-    border-bottom: 0.0625em solid transparent;
-    > a {
-      display: block;
-      font-weight: initial;
-      text-decoration: none !important;
-      color: #000 !important;
-      padding: 0.625em 0.625em 0.625em 0.8125em;
-      cursor: pointer;
-    }
+  min-height: 100vh;
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  @media (min-width: 992px) {
+    margin-left: 255px;
   }
 }
-.sidebar-sub-menu {
-  padding: 0;
-  margin: 0;
-  float: none;
-  background-color: transparent;
-  border-radius: inherit;
-  border: 0;
-  list-style: none;
-  > li {
-    display: flex;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-    position: relative;
-    border-bottom: 0.0625em solid transparent;
-    > a {
-      display: flex;
-      position: relative;
-      align-self: center;
-      box-sizing: border-box;
-      overflow: hidden;
-      &:first-child {
-        -ms-flex: 1 0 auto;
-        flex: 1 0 auto;
-        font-weight: initial;
-        text-decoration: none !important;
-        color: #000 !important;
-        padding: 0.625em 0.625em 0.625em 0.8125em;
-        cursor: pointer;
-      }
-      &.btn {
-        margin-right: 0.3125em;
-      }
-      &.btn-secondary {
-        color: #fff !important;
-        text-decoration: none !important;
-      }
-    }
-  }
+.cks-body-with-head {
+  padding-top: 104px;
 }
 /* ==========================================================================
 Topbar styles
@@ -282,6 +173,132 @@ Developement Ribbon
     text-decoration: none;
     text-shadow: 0 0 5px #444;
     pointer-events: none;
+  }
+}
+/* ==========================================================================
+Sidebar styles
+========================================================================== */
+.cks-sidebar {
+  position: fixed;
+  height: 100vh;
+  width: 255px;
+  overflow: auto;
+  padding: 0;
+  z-index: 100;
+  background-color: #343a40;
+  margin-left: -260px;
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  @media (min-width: 992px) {
+    margin-left: 0;
+  }
+}
+.cks-sidebar-brand {
+  height: 56px;
+  padding: 7px 8px;
+  background: rgba(0, 0, 21, 0.2);
+}
+.cks-sidebar-logo-img {
+  height: 42px;
+  width: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.cks-sidebar-brand-text {
+  font-size: 20px;
+  vertical-align: middle;
+  color: rgba(255, 255, 255, 0.8);
+}
+.cks-sidebar-version {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar-header {
+  padding: 0.625em;
+}
+.sidebar-content {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+}
+.sidebar-menu {
+  padding: 0;
+  margin: 0 0 1.5625em 0;
+  list-style: none;
+  a {
+    &:first-child {
+      span {
+        margin-left: 0.5em;
+        > span:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  fa-layers {
+    font-size: 1.5625em;
+    vertical-align: bottom;
+  }
+  > li {
+    border-bottom: 0.0625em solid transparent;
+    > a {
+      display: block;
+      font-weight: initial;
+      text-decoration: none !important;
+      color: #000 !important;
+      padding: 0.625em 0.625em 0.625em 0.8125em;
+      cursor: pointer;
+    }
+  }
+}
+.sidebar-sub-menu {
+  padding: 0;
+  margin: 0;
+  float: none;
+  background-color: transparent;
+  border-radius: inherit;
+  border: 0;
+  list-style: none;
+  > li {
+    display: flex;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    position: relative;
+    border-bottom: 0.0625em solid transparent;
+    > a {
+      display: flex;
+      position: relative;
+      align-self: center;
+      box-sizing: border-box;
+      overflow: hidden;
+      &:first-child {
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        font-weight: initial;
+        text-decoration: none !important;
+        color: #000 !important;
+        padding: 0.625em 0.625em 0.625em 0.8125em;
+        cursor: pointer;
+      }
+      &.btn {
+        margin-right: 0.3125em;
+      }
+      &.btn-secondary {
+        color: #fff !important;
+        text-decoration: none !important;
+      }
+    }
   }
 }
 /* ==========================================================================

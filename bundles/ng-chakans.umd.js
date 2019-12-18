@@ -602,8 +602,22 @@
         return CksActiveLanguageDirective;
     }());
 
+    var CksMainWithSideAndHeadComponent = /** @class */ (function () {
+        function CksMainWithSideAndHeadComponent() {
+        }
+        CksMainWithSideAndHeadComponent.prototype.ngOnInit = function () { };
+        CksMainWithSideAndHeadComponent = __decorate([
+            core.Component({
+                selector: 'cks-main-with-side-and-head',
+                template: "<router-outlet name=\"sidebar\"></router-outlet>\n<div class=\"cks-main-with-side\">\n    <router-outlet name=\"topbar\"></router-outlet>\n    <div class=\"cks-body-with-head\">\n        <router-outlet></router-outlet>\n    </div>\n</div>\n"
+            })
+        ], CksMainWithSideAndHeadComponent);
+        return CksMainWithSideAndHeadComponent;
+    }());
+
     var CKS_COMPONENTS = [CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent, CksTopbarComponent];
     var CKS_DIRECTIVES = [CksActiveLanguageDirective];
+    var CKS_LAYOUTS = [CksMainWithSideAndHeadComponent];
 
     var NgChakansModule = /** @class */ (function () {
         function NgChakansModule() {
@@ -632,9 +646,9 @@
         NgChakansModule = NgChakansModule_1 = __decorate([
             core.NgModule({
                 imports: [common.CommonModule, angularFontawesome.FontAwesomeModule, ngBootstrap.NgbModule, router.RouterModule, core$1.TranslateModule],
-                declarations: __spread(CKS_DIRECTIVES, CKS_COMPONENTS),
+                declarations: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS),
                 entryComponents: [],
-                exports: __spread(CKS_DIRECTIVES, CKS_COMPONENTS, [core$1.TranslateModule])
+                exports: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS, [core$1.TranslateModule])
             })
         ], NgChakansModule);
         return NgChakansModule;
@@ -695,6 +709,7 @@
     }());
 
     exports.CksConfigService = CksConfigService;
+    exports.CksMainWithSideAndHeadComponent = CksMainWithSideAndHeadComponent;
     exports.CksModuleConfig = CksModuleConfig;
     exports.CksNavbarComponent = CksNavbarComponent;
     exports.CksNavbarService = CksNavbarService;
@@ -709,7 +724,8 @@
     exports.NgChakansModule = NgChakansModule;
     exports.ɵa = CKS_COMPONENTS;
     exports.ɵb = CKS_DIRECTIVES;
-    exports.ɵc = CksActiveLanguageDirective;
+    exports.ɵc = CKS_LAYOUTS;
+    exports.ɵd = CksActiveLanguageDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
