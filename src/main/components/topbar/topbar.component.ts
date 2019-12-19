@@ -23,7 +23,7 @@ export class CksTopbarComponent implements OnInit, OnDestroy {
 
   classNameForBody = 'cks-body';
 
-  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, private routeService: CksRouteService) {}
+  constructor(@Inject(DOCUMENT) private document: any, private renderer: Renderer2, private routeService: CksRouteService) {}
 
   ngOnInit(): void {
     this._fixedTop = this._positionFixed = this.fixed;
