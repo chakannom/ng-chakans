@@ -518,6 +518,7 @@
             this._positionFixed = false;
             this._withSidebar = false;
             this._withSubHeader = false;
+            this.classNameForBody = 'cks-body';
         }
         CksTopbarComponent.prototype.ngOnInit = function () {
             this._fixedTop = this._positionFixed = this.fixed;
@@ -525,8 +526,19 @@
             this._withSubHeader = this.withSubheader;
             this.textItems = this.textItems ? this.textItems.slice(0, 3) : [];
             this.iconItems = this.iconItems ? this.iconItems.slice(0, 6) : [];
+            if (this.fixed) {
+                this.classNameForBody += '-fixed-topbar';
+                if (this.withSubheader) {
+                    this.classNameForBody += '-with-subheader';
+                }
+                this.renderer.addClass(this.document.body, this.classNameForBody);
+            }
         };
-        CksTopbarComponent.prototype.ngOnDestroy = function () { };
+        CksTopbarComponent.prototype.ngOnDestroy = function () {
+            if (this.fixed) {
+                this.renderer.removeClass(this.document.body, this.classNameForBody);
+            }
+        };
         CksTopbarComponent.prototype.doAction = function (navigation) {
             if (navigation) {
                 if (typeof navigation === 'function') {
@@ -564,7 +576,7 @@
             core.Input()
         ], CksTopbarComponent.prototype, "breadcrumbItems", void 0);
         __decorate([
-            core.HostBinding('class.cks-header')
+            core.HostBinding('class.cks-topbar')
         ], CksTopbarComponent.prototype, "_header", void 0);
         __decorate([
             core.HostBinding('class.fixed-top')
@@ -573,15 +585,15 @@
             core.HostBinding('class.position-fixed')
         ], CksTopbarComponent.prototype, "_positionFixed", void 0);
         __decorate([
-            core.HostBinding('class.cks-header-with-sidebar')
+            core.HostBinding('class.cks-topbar-with-sidebar')
         ], CksTopbarComponent.prototype, "_withSidebar", void 0);
         __decorate([
-            core.HostBinding('class.cks-header-with-subheader')
+            core.HostBinding('class.cks-topbar-with-subheader')
         ], CksTopbarComponent.prototype, "_withSubHeader", void 0);
         CksTopbarComponent = __decorate([
             core.Component({
                 selector: 'cks-topbar',
-                template: "<div class=\"d-flex\" [ngSwitch]=\"withSidebar\">\n    <button  class=\"navbar-toggler d-lg-none mr-auto\" type=\"button\" *ngSwitchCase=\"true\">\n        <fa-icon icon=\"bars\"></fa-icon>\n    </button>\n    <a class=\"cks-header-brand\">\n        <span class=\"cks-header-logo-img\"></span>\n        <span class=\"cks-header-brand-text\">Gooroom</span>\n        <span class=\"cks-header-version\">vUNKNOWN</span>\n    </a>\n    <button class=\"navbar-toggler d-none d-lg-block ml-3\" type=\"button\" *ngSwitchCase=\"true\">\n        <fa-icon icon=\"bars\"></fa-icon>\n    </button>\n</div>\n<ul class=\"nav navbar-nav d-none d-lg-flex\">\n    <li class=\"nav-item px-2\" *ngFor=\"let tItem of textItems\">\n        <a class=\"nav-link\" (click)=\"doAction(tItem.navigation)\">\n            {{ !tItem.name.translateKey ? tItem.name.label : (tItem.name.translateKey | translate) }}\n        </a>\n    </li>\n</ul>\n<ul class=\"nav navbar-nav ml-auto\">\n    <li class=\"nav-item\" *ngFor=\"let iItem of iconItems\">\n        <a class=\"nav-link\" (click)=\"doAction(iItem.navigation)\" placement=\"bottom\" ngbTooltip=\"{{ iItem.tooltip ? (!iItem.tooltip.translateKey ? iItem.tooltip.label : (iItem.tooltip.translateKey | translate)) : undefined }}\">\n            <fa-icon [icon]=\"iItem.icon\" class=\"cks-icon\"></fa-icon>\n        </a>\n    </li>\n    <li class=\"nav-item\">\n        <a class=\"nav-link py-0 px-2\">\n            <fa-icon icon=\"user-circle\" class=\"profile-icon\" *ngIf=\"!userImgUrl\"></fa-icon>\n            <img [src]=\"userImgUrl\" class=\"profile-image rounded-circle\" alt=\"Avatar\" *ngIf=\"userImgUrl\">\n        </a>\n    </li>\n    <li class=\"nav-item pr-1\">\n        <button class=\"nav-button\" type=\"button\">\n            <fa-icon icon=\"ellipsis-h\"></fa-icon>\n        </button>\n    </li>\n</ul>\n<div class=\"cks-subheader justify-content-between px-3\" *ngIf=\"withSubheader\">\n    <ol class=\"breadcrumb border-0 m-0 px-0 px-md-3 bg-transparent\">\n        <li class=\"breadcrumb-item\" [ngClass]=\"{'active': isLast}\" *ngFor=\"let bItem of breadcrumbItems; last as isLast\">\n            <a (click)=\"doAction(bItem.navigation)\">{{ !bItem.name.translateKey ? bItem.name.label : (bItem.name.translateKey | translate) }}</a>\n        </li>\n    </ol>\n</div>\n"
+                template: "<div class=\"d-flex\" [ngSwitch]=\"withSidebar\">\n    <button  class=\"navbar-toggler d-lg-none mr-auto\" type=\"button\" *ngSwitchCase=\"true\">\n        <fa-icon icon=\"bars\"></fa-icon>\n    </button>\n    <a class=\"cks-topbar-brand\">\n        <span class=\"cks-topbar-logo-img\"></span>\n        <span class=\"cks-topbar-brand-text\">Gooroom</span>\n        <span class=\"cks-topbar-version\">vUNKNOWN</span>\n    </a>\n    <button class=\"navbar-toggler d-none d-lg-block ml-3\" type=\"button\" *ngSwitchCase=\"true\">\n        <fa-icon icon=\"bars\"></fa-icon>\n    </button>\n</div>\n<ul class=\"nav navbar-nav d-none d-lg-flex\">\n    <li class=\"nav-item px-2\" *ngFor=\"let tItem of textItems\">\n        <a class=\"nav-link\" (click)=\"doAction(tItem.navigation)\">\n            {{ !tItem.name.translateKey ? tItem.name.label : (tItem.name.translateKey | translate) }}\n        </a>\n    </li>\n</ul>\n<ul class=\"nav navbar-nav ml-auto\">\n    <li class=\"nav-item\" *ngFor=\"let iItem of iconItems\">\n        <a class=\"nav-link\" (click)=\"doAction(iItem.navigation)\" placement=\"bottom\" ngbTooltip=\"{{ iItem.tooltip ? (!iItem.tooltip.translateKey ? iItem.tooltip.label : (iItem.tooltip.translateKey | translate)) : undefined }}\">\n            <fa-icon [icon]=\"iItem.icon\" class=\"cks-icon\"></fa-icon>\n        </a>\n    </li>\n    <li class=\"nav-item\">\n        <a class=\"nav-link py-0 px-2\">\n            <fa-icon icon=\"user-circle\" class=\"profile-icon\" *ngIf=\"!userImgUrl\"></fa-icon>\n            <img [src]=\"userImgUrl\" class=\"profile-image rounded-circle\" alt=\"Avatar\" *ngIf=\"userImgUrl\">\n        </a>\n    </li>\n    <li class=\"nav-item pr-1\">\n        <button class=\"nav-button\" type=\"button\">\n            <fa-icon icon=\"ellipsis-h\"></fa-icon>\n        </button>\n    </li>\n</ul>\n<div class=\"cks-subheader justify-content-between px-3\" *ngIf=\"withSubheader\">\n    <ol class=\"breadcrumb border-0 m-0 px-0 px-md-3 bg-transparent\">\n        <li class=\"breadcrumb-item\" [ngClass]=\"{'active': isLast}\" *ngFor=\"let bItem of breadcrumbItems; last as isLast\">\n            <a (click)=\"doAction(bItem.navigation)\">{{ !bItem.name.translateKey ? bItem.name.label : (bItem.name.translateKey | translate) }}</a>\n        </li>\n    </ol>\n</div>\n"
             }),
             __param(0, core.Inject(common.DOCUMENT))
         ], CksTopbarComponent);
@@ -591,11 +603,10 @@
     var CksMainWithSideAndHeadComponent = /** @class */ (function () {
         function CksMainWithSideAndHeadComponent() {
         }
-        CksMainWithSideAndHeadComponent.prototype.ngOnInit = function () { };
         CksMainWithSideAndHeadComponent = __decorate([
             core.Component({
                 selector: 'cks-main-with-side-and-head',
-                template: "<router-outlet name=\"sidebar\"></router-outlet>\n<div class=\"cks-main-with-side\">\n    <router-outlet name=\"topbar\"></router-outlet>\n    <div class=\"cks-body-with-head\">\n        <router-outlet></router-outlet>\n    </div>\n</div>\n"
+                template: "<router-outlet name=\"sidebar\"></router-outlet>\n<div class=\"cks-main-with-side\">\n    <router-outlet name=\"topbar\"></router-outlet>\n    <div class=\"cks-main-with-head\">\n        <router-outlet></router-outlet>\n    </div>\n</div>\n"
             })
         ], CksMainWithSideAndHeadComponent);
         return CksMainWithSideAndHeadComponent;
@@ -638,9 +649,21 @@
         return CksActiveLanguageDirective;
     }());
 
+    var CksMainWithHeadComponent = /** @class */ (function () {
+        function CksMainWithHeadComponent() {
+        }
+        CksMainWithHeadComponent = __decorate([
+            core.Component({
+                selector: 'cks-main-with-head',
+                template: "<router-outlet name=\"topbar\"></router-outlet>\n<div class=\"cks-main-with-head\">\n    <router-outlet></router-outlet>\n</div>\n"
+            })
+        ], CksMainWithHeadComponent);
+        return CksMainWithHeadComponent;
+    }());
+
     var CKS_COMPONENTS = [CksDynamicComponent, CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent, CksTopbarComponent];
     var CKS_DIRECTIVES = [CksActiveLanguageDirective];
-    var CKS_LAYOUTS = [CksMainWithSideAndHeadComponent];
+    var CKS_LAYOUTS = [CksMainWithHeadComponent, CksMainWithSideAndHeadComponent];
 
     var NgChakansModule = /** @class */ (function () {
         function NgChakansModule() {
@@ -670,7 +693,7 @@
             core.NgModule({
                 imports: [common.CommonModule, angularFontawesome.FontAwesomeModule, ngBootstrap.NgbModule, router.RouterModule, core$1.TranslateModule],
                 declarations: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS),
-                entryComponents: [CksDynamicComponent, CksMainWithSideAndHeadComponent],
+                entryComponents: [CksDynamicComponent, CksMainWithHeadComponent, CksMainWithSideAndHeadComponent],
                 exports: __spread(CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS, [core$1.TranslateModule])
             })
         ], NgChakansModule);
@@ -733,6 +756,7 @@
 
     exports.CksConfigService = CksConfigService;
     exports.CksDynamicComponent = CksDynamicComponent;
+    exports.CksMainWithHeadComponent = CksMainWithHeadComponent;
     exports.CksMainWithSideAndHeadComponent = CksMainWithSideAndHeadComponent;
     exports.CksModuleConfig = CksModuleConfig;
     exports.CksNavbarComponent = CksNavbarComponent;
@@ -750,6 +774,7 @@
     exports.ɵb = CKS_DIRECTIVES;
     exports.ɵc = CKS_LAYOUTS;
     exports.ɵd = CksActiveLanguageDirective;
+    exports.ɵe = CksMainWithHeadComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

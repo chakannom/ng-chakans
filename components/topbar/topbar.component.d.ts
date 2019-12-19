@@ -16,6 +16,7 @@ export declare class CksTopbarComponent implements OnInit, OnDestroy {
     _positionFixed: boolean;
     _withSidebar: boolean;
     _withSubHeader: boolean;
+    classNameForBody: string;
     constructor(document: any, renderer: Renderer2, routeService: CksRouteService);
     ngOnInit(): void;
     ngOnDestroy(): void;

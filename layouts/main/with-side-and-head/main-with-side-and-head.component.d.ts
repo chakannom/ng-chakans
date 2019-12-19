@@ -1,5 +1,3 @@
-import { OnInit } from '@angular/core';
-export declare class CksMainWithSideAndHeadComponent implements OnInit {
+export declare class CksMainWithSideAndHeadComponent {
     constructor();
-    ngOnInit(): void;
 }
