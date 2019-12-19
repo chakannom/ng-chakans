@@ -7,9 +7,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CksModuleConfig } from './config';
 import { CksConfigService } from './config.service';
 import { CksDynamicComponent } from './components/dynamic/dynamic.component';
+import { CksMainWithHeadComponent } from './layouts/main/with-head/main-with-head.component';
 import { CksMainWithSideAndHeadComponent } from './layouts/main/with-side-and-head/main-with-side-and-head.component';
 import { CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS } from './cks-components';
-import { CksMainWithHeadComponent } from './layouts';
 
 @NgModule({
   imports: [CommonModule, FontAwesomeModule, NgbModule, RouterModule, TranslateModule],
