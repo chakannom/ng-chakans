@@ -600,6 +600,18 @@
         return CksTopbarComponent;
     }());
 
+    var CksMainWithHeadComponent = /** @class */ (function () {
+        function CksMainWithHeadComponent() {
+        }
+        CksMainWithHeadComponent = __decorate([
+            core.Component({
+                selector: 'cks-main-with-head',
+                template: "<router-outlet name=\"topbar\"></router-outlet>\n<div class=\"cks-main-with-head\">\n    <router-outlet></router-outlet>\n</div>\n"
+            })
+        ], CksMainWithHeadComponent);
+        return CksMainWithHeadComponent;
+    }());
+
     var CksMainWithSideAndHeadComponent = /** @class */ (function () {
         function CksMainWithSideAndHeadComponent() {
         }
@@ -647,18 +659,6 @@
             })
         ], CksActiveLanguageDirective);
         return CksActiveLanguageDirective;
-    }());
-
-    var CksMainWithHeadComponent = /** @class */ (function () {
-        function CksMainWithHeadComponent() {
-        }
-        CksMainWithHeadComponent = __decorate([
-            core.Component({
-                selector: 'cks-main-with-head',
-                template: "<router-outlet name=\"topbar\"></router-outlet>\n<div class=\"cks-main-with-head\">\n    <router-outlet></router-outlet>\n</div>\n"
-            })
-        ], CksMainWithHeadComponent);
-        return CksMainWithHeadComponent;
     }());
 
     var CKS_COMPONENTS = [CksDynamicComponent, CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent, CksTopbarComponent];
@@ -774,7 +774,6 @@
     exports.ɵb = CKS_DIRECTIVES;
     exports.ɵc = CKS_LAYOUTS;
     exports.ɵd = CksActiveLanguageDirective;
-    exports.ɵe = CksMainWithHeadComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

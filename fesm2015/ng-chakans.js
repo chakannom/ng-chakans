@@ -389,6 +389,16 @@ CksTopbarComponent = __decorate([
     __param(0, Inject(DOCUMENT))
 ], CksTopbarComponent);
 
+let CksMainWithHeadComponent = class CksMainWithHeadComponent {
+    constructor() { }
+};
+CksMainWithHeadComponent = __decorate([
+    Component({
+        selector: 'cks-main-with-head',
+        template: "<router-outlet name=\"topbar\"></router-outlet>\n<div class=\"cks-main-with-head\">\n    <router-outlet></router-outlet>\n</div>\n"
+    })
+], CksMainWithHeadComponent);
+
 let CksMainWithSideAndHeadComponent = class CksMainWithSideAndHeadComponent {
     constructor() { }
 };
@@ -433,16 +443,6 @@ CksActiveLanguageDirective = __decorate([
         selector: '[cksActiveLanguage]'
     })
 ], CksActiveLanguageDirective);
-
-let CksMainWithHeadComponent = class CksMainWithHeadComponent {
-    constructor() { }
-};
-CksMainWithHeadComponent = __decorate([
-    Component({
-        selector: 'cks-main-with-head',
-        template: "<router-outlet name=\"topbar\"></router-outlet>\n<div class=\"cks-main-with-head\">\n    <router-outlet></router-outlet>\n</div>\n"
-    })
-], CksMainWithHeadComponent);
 
 const CKS_COMPONENTS = [CksDynamicComponent, CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent, CksTopbarComponent];
 const CKS_DIRECTIVES = [CksActiveLanguageDirective];
@@ -539,5 +539,5 @@ CksSubscriptionManager = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { CksConfigService, CksDynamicComponent, CksMainWithHeadComponent, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, CKS_COMPONENTS as ɵa, CKS_DIRECTIVES as ɵb, CKS_LAYOUTS as ɵc, CksActiveLanguageDirective as ɵd, CksMainWithHeadComponent as ɵe };
+export { CksConfigService, CksDynamicComponent, CksMainWithHeadComponent, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, CKS_COMPONENTS as ɵa, CKS_DIRECTIVES as ɵb, CKS_LAYOUTS as ɵc, CksActiveLanguageDirective as ɵd };
 //# sourceMappingURL=ng-chakans.js.map
