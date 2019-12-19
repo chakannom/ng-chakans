@@ -8,7 +8,8 @@ eg $input-color: red;
 @import 'bootstrap-variables';
 // Import Bootstrap source files from node_modules
 @import '~bootstrap/scss/bootstrap';
-@import '../../../main/components/navbar/navbar.scss';
-@import '../../../main/components/sidebar/sidebar.scss';
-@import '../../../main/components/topbar/topbar.scss';
-@import '../../../main/layouts/main/with-side-and-head/main-with-side-and-head.scss';
+@import '../../../main/components/navbar/navbar';
+@import '../../../main/components/sidebar/sidebar';
+@import '../../../main/components/topbar/topbar';
+@import '../../../main/layouts/main/main';
+@import '../../../main/layouts/main/with-side-and-head/main-with-side-and-head';

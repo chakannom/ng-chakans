@@ -9,11 +9,12 @@ import { CksConfigService } from './config.service';
 import { CksDynamicComponent } from './components/dynamic/dynamic.component';
 import { CksMainWithSideAndHeadComponent } from './layouts/main/with-side-and-head/main-with-side-and-head.component';
 import { CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS } from './cks-components';
+import { CksMainWithHeadComponent } from './layouts';
 
 @NgModule({
   imports: [CommonModule, FontAwesomeModule, NgbModule, RouterModule, TranslateModule],
   declarations: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS],
-  entryComponents: [CksDynamicComponent, CksMainWithSideAndHeadComponent],
+  entryComponents: [CksDynamicComponent, CksMainWithHeadComponent, CksMainWithSideAndHeadComponent],
   exports: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS, TranslateModule]
 })
 export class NgChakansModule {

@@ -15,13 +15,15 @@ export class CksTopbarComponent implements OnInit, OnDestroy {
   @Input() withSubheader: boolean;
   @Input() breadcrumbItems: any[];
 
-  @HostBinding('class.cks-header') _header = true;
+  @HostBinding('class.cks-topbar') _header = true;
   @HostBinding('class.fixed-top') _fixedTop = false;
   @HostBinding('class.position-fixed') _positionFixed = false;
-  @HostBinding('class.cks-header-with-sidebar') _withSidebar = false;
-  @HostBinding('class.cks-header-with-subheader') _withSubHeader = false;
+  @HostBinding('class.cks-topbar-with-sidebar') _withSidebar = false;
+  @HostBinding('class.cks-topbar-with-subheader') _withSubHeader = false;
 
-  constructor(@Inject(DOCUMENT) private document: any, private renderer: Renderer2, private routeService: CksRouteService) {}
+  classNameForBody = 'cks-body';
+
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, private routeService: CksRouteService) {}
 
   ngOnInit(): void {
     this._fixedTop = this._positionFixed = this.fixed;
@@ -29,9 +31,20 @@ export class CksTopbarComponent implements OnInit, OnDestroy {
     this._withSubHeader = this.withSubheader;
     this.textItems = this.textItems ? this.textItems.slice(0, 3) : [];
     this.iconItems = this.iconItems ? this.iconItems.slice(0, 6) : [];
+    if (this.fixed) {
+      this.classNameForBody += '-fixed-topbar';
+      if (this.withSubheader) {
+        this.classNameForBody += '-with-subheader';
+      }
+      this.renderer.addClass(this.document.body, this.classNameForBody);
+    }
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    if (this.fixed) {
+      this.renderer.removeClass(this.document.body, this.classNameForBody);
+    }
+  }
 
   doAction(navigation: any) {
     if (navigation) {

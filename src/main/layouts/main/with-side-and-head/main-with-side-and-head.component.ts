@@ -4,8 +4,6 @@ import { Component, OnInit } from '@angular/core';
   selector: 'cks-main-with-side-and-head',
   templateUrl: './main-with-side-and-head.component.html'
 })
-export class CksMainWithSideAndHeadComponent implements OnInit {
+export class CksMainWithSideAndHeadComponent {
   constructor() {}
-
-  ngOnInit() {}
 }

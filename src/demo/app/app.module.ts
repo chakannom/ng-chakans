@@ -14,7 +14,6 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fontAwesomeIcons } from './font-awesome-icons';
-import { MainWithHeadComponent } from './layouts/main/with-head/main-with-head.component';
 import { SidebarForLayoutComponent } from './layouts/sidebar/sidebar.component';
 import { TopbarForLayoutComponent } from './layouts/topbar/topbar.component';
 
@@ -38,7 +37,7 @@ export function translatePartialLoader(http: HttpClient) {
     NgChakansHomeModule,
     NgChakansComponentsModule
   ],
-  declarations: [MainComponent, MainWithHeadComponent, SidebarForLayoutComponent, TopbarForLayoutComponent],
+  declarations: [MainComponent, SidebarForLayoutComponent, TopbarForLayoutComponent],
   providers: [],
   bootstrap: [MainComponent]
 })
