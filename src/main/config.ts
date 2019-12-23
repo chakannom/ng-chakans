@@ -23,8 +23,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CksModuleConfig {
-  serverApiUrl = '/';
-  i18nEnabled = false;
-  defaultI18nLang = 'ko';
-  noi18nMessage = 'translation-not-found';
+  serverApiUrl?: string = '/';
+  i18nEnabled?: boolean = false;
+  defaultI18nLang?: string = 'ko';
+  noi18nMessage?: string = 'translation-not-found';
 }
