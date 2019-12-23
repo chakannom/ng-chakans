@@ -5,9 +5,10 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { DOCUMENT, CommonModule } from '@angular/common';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 var CksDynamicComponent = /** @class */ (function () {
     function CksDynamicComponent(route) {
@@ -133,6 +134,21 @@ var CksNavbarComponent = /** @class */ (function () {
     return CksNavbarComponent;
 }());
 
+/*
+ Copyright 2019 ChaKanNom
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
 var CksProfileInfo = /** @class */ (function () {
     function CksProfileInfo() {
     }
@@ -142,6 +158,9 @@ var CksProfileInfo = /** @class */ (function () {
 var CksModuleConfig = /** @class */ (function () {
     function CksModuleConfig() {
         this.serverApiUrl = '/';
+        this.i18nEnabled = false;
+        this.defaultI18nLang = 'ko';
+        this.noi18nMessage = 'translation-not-found';
     }
     CksModuleConfig.ngInjectableDef = ɵɵdefineInjectable({ factory: function CksModuleConfig_Factory() { return new CksModuleConfig(); }, token: CksModuleConfig, providedIn: "root" });
     CksModuleConfig = __decorate([
@@ -473,6 +492,17 @@ var CKS_COMPONENTS = [CksDynamicComponent, CksNavbarComponent, CksPageRibbonComp
 var CKS_DIRECTIVES = [CksActiveLanguageDirective];
 var CKS_LAYOUTS = [CksMainWithHeadComponent, CksMainWithSideAndHeadComponent];
 
+var CksMissingTranslationHandler = /** @class */ (function () {
+    function CksMissingTranslationHandler(configService) {
+        this.configService = configService;
+    }
+    CksMissingTranslationHandler.prototype.handle = function (params) {
+        var key = params.key;
+        return this.configService.getConfig().noi18nMessage + "[" + key + "]";
+    };
+    return CksMissingTranslationHandler;
+}());
+
 var NgChakansModule = /** @class */ (function () {
     function NgChakansModule() {
     }
@@ -506,6 +536,47 @@ var NgChakansModule = /** @class */ (function () {
         })
     ], NgChakansModule);
     return NgChakansModule;
+}());
+function translatePartialLoader(http, prefix, suffix) {
+    if (prefix === void 0) { prefix = 'i18n/'; }
+    if (suffix === void 0) { suffix = '.json?buildTimestamp=0'; }
+    return new TranslateHttpLoader(http, prefix, suffix);
+}
+function missingTranslationHandler(configService) {
+    return new CksMissingTranslationHandler(configService);
+}
+
+var CksLanguageService = /** @class */ (function () {
+    function CksLanguageService(translateService, configService) {
+        this.translateService = translateService;
+        this.configService = configService;
+        this.currentLang = 'ko';
+    }
+    CksLanguageService.prototype.init = function () {
+        var config = this.configService.getConfig();
+        this.currentLang = config.defaultI18nLang;
+        this.translateService.setDefaultLang(this.currentLang);
+        this.translateService.use(this.currentLang);
+    };
+    CksLanguageService.prototype.changeLanguage = function (languageKey) {
+        this.currentLang = languageKey;
+        this.configService.CONFIG_OPTIONS.defaultI18nLang = languageKey;
+        this.translateService.use(this.currentLang);
+    };
+    CksLanguageService.prototype.getCurrentLanguage = function () {
+        return this.currentLang;
+    };
+    CksLanguageService.ctorParameters = function () { return [
+        { type: TranslateService },
+        { type: CksConfigService }
+    ]; };
+    CksLanguageService.ngInjectableDef = ɵɵdefineInjectable({ factory: function CksLanguageService_Factory() { return new CksLanguageService(ɵɵinject(TranslateService), ɵɵinject(CksConfigService)); }, token: CksLanguageService, providedIn: "root" });
+    CksLanguageService = __decorate([
+        Injectable({
+            providedIn: 'root'
+        })
+    ], CksLanguageService);
+    return CksLanguageService;
 }());
 
 /**
@@ -562,9 +633,29 @@ var CksSubscriptionManager = /** @class */ (function () {
     return CksSubscriptionManager;
 }());
 
+/*
+ Copyright 2013-2019 the original author or authors from the JHipster project.
+ * Modified by ChaKanNom 2019.07.31
+
+ This file is part of the JHipster project, see https://www.jhipster.tech/
+ for more information.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { CksConfigService, CksDynamicComponent, CksMainWithHeadComponent, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, CKS_COMPONENTS as ɵa, CKS_DIRECTIVES as ɵb, CKS_LAYOUTS as ɵc, CksActiveLanguageDirective as ɵd };
+export { CksConfigService, CksDynamicComponent, CksLanguageService, CksMainWithHeadComponent, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, missingTranslationHandler, translatePartialLoader, CksMissingTranslationHandler as ɵa, CKS_COMPONENTS as ɵb, CKS_DIRECTIVES as ɵc, CKS_LAYOUTS as ɵd, CksActiveLanguageDirective as ɵe };
 //# sourceMappingURL=ng-chakans.js.map

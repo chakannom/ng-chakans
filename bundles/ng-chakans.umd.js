@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('rxjs'), require('@angular/common/http'), require('rxjs/operators'), require('@angular/common'), require('@ng-bootstrap/ng-bootstrap'), require('@fortawesome/angular-fontawesome'), require('@ngx-translate/core')) :
-    typeof define === 'function' && define.amd ? define('ng-chakans', ['exports', '@angular/core', '@angular/router', 'rxjs', '@angular/common/http', 'rxjs/operators', '@angular/common', '@ng-bootstrap/ng-bootstrap', '@fortawesome/angular-fontawesome', '@ngx-translate/core'], factory) :
-    (global = global || self, factory(global['ng-chakans'] = {}, global.ng.core, global.ng.router, global.rxjs, global.ng.common.http, global.rxjs.operators, global.ng.common, global.ngBootstrap, global.angularFontawesome, global.core$1));
-}(this, (function (exports, core, router, rxjs, http, operators, common, ngBootstrap, angularFontawesome, core$1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('rxjs'), require('@angular/common/http'), require('rxjs/operators'), require('@angular/common'), require('@ngx-translate/core'), require('@ngx-translate/http-loader'), require('@ng-bootstrap/ng-bootstrap'), require('@fortawesome/angular-fontawesome')) :
+    typeof define === 'function' && define.amd ? define('ng-chakans', ['exports', '@angular/core', '@angular/router', 'rxjs', '@angular/common/http', 'rxjs/operators', '@angular/common', '@ngx-translate/core', '@ngx-translate/http-loader', '@ng-bootstrap/ng-bootstrap', '@fortawesome/angular-fontawesome'], factory) :
+    (global = global || self, factory(global['ng-chakans'] = {}, global.ng.core, global.ng.router, global.rxjs, global.ng.common.http, global.rxjs.operators, global.ng.common, global.core$1, global.httpLoader, global.ngBootstrap, global.angularFontawesome));
+}(this, (function (exports, core, router, rxjs, http, operators, common, core$1, httpLoader, ngBootstrap, angularFontawesome) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -325,6 +325,21 @@
         return CksNavbarComponent;
     }());
 
+    /*
+     Copyright 2019 ChaKanNom
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+     */
     var CksProfileInfo = /** @class */ (function () {
         function CksProfileInfo() {
         }
@@ -334,6 +349,9 @@
     var CksModuleConfig = /** @class */ (function () {
         function CksModuleConfig() {
             this.serverApiUrl = '/';
+            this.i18nEnabled = false;
+            this.defaultI18nLang = 'ko';
+            this.noi18nMessage = 'translation-not-found';
         }
         CksModuleConfig.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function CksModuleConfig_Factory() { return new CksModuleConfig(); }, token: CksModuleConfig, providedIn: "root" });
         CksModuleConfig = __decorate([
@@ -665,6 +683,17 @@
     var CKS_DIRECTIVES = [CksActiveLanguageDirective];
     var CKS_LAYOUTS = [CksMainWithHeadComponent, CksMainWithSideAndHeadComponent];
 
+    var CksMissingTranslationHandler = /** @class */ (function () {
+        function CksMissingTranslationHandler(configService) {
+            this.configService = configService;
+        }
+        CksMissingTranslationHandler.prototype.handle = function (params) {
+            var key = params.key;
+            return this.configService.getConfig().noi18nMessage + "[" + key + "]";
+        };
+        return CksMissingTranslationHandler;
+    }());
+
     var NgChakansModule = /** @class */ (function () {
         function NgChakansModule() {
         }
@@ -698,6 +727,47 @@
             })
         ], NgChakansModule);
         return NgChakansModule;
+    }());
+    function translatePartialLoader(http, prefix, suffix) {
+        if (prefix === void 0) { prefix = 'i18n/'; }
+        if (suffix === void 0) { suffix = '.json?buildTimestamp=0'; }
+        return new httpLoader.TranslateHttpLoader(http, prefix, suffix);
+    }
+    function missingTranslationHandler(configService) {
+        return new CksMissingTranslationHandler(configService);
+    }
+
+    var CksLanguageService = /** @class */ (function () {
+        function CksLanguageService(translateService, configService) {
+            this.translateService = translateService;
+            this.configService = configService;
+            this.currentLang = 'ko';
+        }
+        CksLanguageService.prototype.init = function () {
+            var config = this.configService.getConfig();
+            this.currentLang = config.defaultI18nLang;
+            this.translateService.setDefaultLang(this.currentLang);
+            this.translateService.use(this.currentLang);
+        };
+        CksLanguageService.prototype.changeLanguage = function (languageKey) {
+            this.currentLang = languageKey;
+            this.configService.CONFIG_OPTIONS.defaultI18nLang = languageKey;
+            this.translateService.use(this.currentLang);
+        };
+        CksLanguageService.prototype.getCurrentLanguage = function () {
+            return this.currentLang;
+        };
+        CksLanguageService.ctorParameters = function () { return [
+            { type: core$1.TranslateService },
+            { type: CksConfigService }
+        ]; };
+        CksLanguageService.ngInjectableDef = core.ɵɵdefineInjectable({ factory: function CksLanguageService_Factory() { return new CksLanguageService(core.ɵɵinject(core$1.TranslateService), core.ɵɵinject(CksConfigService)); }, token: CksLanguageService, providedIn: "root" });
+        CksLanguageService = __decorate([
+            core.Injectable({
+                providedIn: 'root'
+            })
+        ], CksLanguageService);
+        return CksLanguageService;
     }());
 
     /**
@@ -756,6 +826,7 @@
 
     exports.CksConfigService = CksConfigService;
     exports.CksDynamicComponent = CksDynamicComponent;
+    exports.CksLanguageService = CksLanguageService;
     exports.CksMainWithHeadComponent = CksMainWithHeadComponent;
     exports.CksMainWithSideAndHeadComponent = CksMainWithSideAndHeadComponent;
     exports.CksModuleConfig = CksModuleConfig;
@@ -770,10 +841,13 @@
     exports.CksSubscriptionManager = CksSubscriptionManager;
     exports.CksTopbarComponent = CksTopbarComponent;
     exports.NgChakansModule = NgChakansModule;
-    exports.ɵa = CKS_COMPONENTS;
-    exports.ɵb = CKS_DIRECTIVES;
-    exports.ɵc = CKS_LAYOUTS;
-    exports.ɵd = CksActiveLanguageDirective;
+    exports.missingTranslationHandler = missingTranslationHandler;
+    exports.translatePartialLoader = translatePartialLoader;
+    exports.ɵa = CksMissingTranslationHandler;
+    exports.ɵb = CKS_COMPONENTS;
+    exports.ɵc = CKS_DIRECTIVES;
+    exports.ɵd = CKS_LAYOUTS;
+    exports.ɵe = CksActiveLanguageDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
