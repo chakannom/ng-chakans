@@ -1,6 +1,6 @@
 /*
  Copyright 2013-2019 the original author or authors from the JHipster project.
- * Modified by ChaKanNom 2019.07.31
+ * Modified by ChaKanNom 2019.12.23
 
  This file is part of the JHipster project, see https://www.jhipster.tech/
  for more information.
@@ -17,14 +17,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-import { Injectable } from '@angular/core';
+import { MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
+import { CksConfigService } from '../config.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CksModuleConfig {
-  serverApiUrl = '/';
-  i18nEnabled = false;
-  defaultI18nLang = 'ko';
-  noi18nMessage = 'translation-not-found';
+export class CksMissingTranslationHandler implements MissingTranslationHandler {
+  constructor(private configService: CksConfigService) {}
+
+  handle(params: MissingTranslationHandlerParams) {
+    const key = params.key;
+    return `${this.configService.getConfig().noi18nMessage}[${key}]`;
+  }
 }
