@@ -4,7 +4,8 @@ import { CksPageRibbonComponent } from './components/profiles/page-ribbon.compon
 import { CksSidebarComponent } from './components/sidebar/sidebar.component';
 import { CksTopbarComponent } from './components/topbar/topbar.component';
 import { CksActiveLanguageDirective } from './directives/active-language.directive';
+import { CksTranslateDirective } from './directives/cks-translate.directive';
 import { CksMainWithHeadComponent } from './layouts/main/with-head/main-with-head.component';
 export declare const CKS_COMPONENTS: (typeof CksDynamicComponent | typeof CksNavbarComponent | typeof CksPageRibbonComponent | typeof CksSidebarComponent | typeof CksTopbarComponent)[];
-export declare const CKS_DIRECTIVES: (typeof CksActiveLanguageDirective)[];
+export declare const CKS_DIRECTIVES: (typeof CksActiveLanguageDirective | typeof CksTranslateDirective)[];
 export declare const CKS_LAYOUTS: (typeof CksMainWithHeadComponent)[];

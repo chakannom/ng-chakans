@@ -1,9 +1,9 @@
 import { __decorate, __assign, __param, __spread } from 'tslib';
-import { ViewChild, ViewContainerRef, Component, ɵɵdefineInjectable, Injectable, ɵɵinject, Input, HostBinding, Inject, Renderer2, ElementRef, Directive, NgModule } from '@angular/core';
+import { ViewChild, ViewContainerRef, Component, ɵɵdefineInjectable, Injectable, ɵɵinject, Input, HostBinding, Inject, Renderer2, ElementRef, Directive, Optional, NgModule } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -488,8 +488,68 @@ var CksActiveLanguageDirective = /** @class */ (function () {
     return CksActiveLanguageDirective;
 }());
 
+/**
+ * A wrapper directive on top of the translate pipe as the inbuilt translate directive from ngx-translate is too verbose and buggy
+ */
+var CksTranslateDirective = /** @class */ (function () {
+    function CksTranslateDirective(configService, el, translateService) {
+        this.configService = configService;
+        this.el = el;
+        this.translateService = translateService;
+        this.directiveDestroyed = new Subject();
+    }
+    CksTranslateDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        var enabled = this.configService.getConfig().i18nEnabled;
+        if (enabled) {
+            this.translateService.onLangChange.pipe(takeUntil(this.directiveDestroyed)).subscribe(function () {
+                _this.getTranslation();
+            });
+        }
+    };
+    CksTranslateDirective.prototype.ngOnChanges = function () {
+        var enabled = this.configService.getConfig().i18nEnabled;
+        if (enabled) {
+            this.getTranslation();
+        }
+    };
+    CksTranslateDirective.prototype.ngOnDestroy = function () {
+        this.directiveDestroyed.next();
+        this.directiveDestroyed.complete();
+    };
+    CksTranslateDirective.prototype.getTranslation = function () {
+        var _this = this;
+        this.translateService
+            .get(this.cksTranslate, this.translateValues)
+            .pipe(takeUntil(this.directiveDestroyed))
+            .subscribe(function (value) {
+            _this.el.nativeElement.innerHTML = value;
+        }, function () {
+            return _this.configService.getConfig().noi18nMessage + "[" + _this.cksTranslate + "]";
+        });
+    };
+    CksTranslateDirective.ctorParameters = function () { return [
+        { type: CksConfigService },
+        { type: ElementRef },
+        { type: TranslateService, decorators: [{ type: Optional }] }
+    ]; };
+    __decorate([
+        Input()
+    ], CksTranslateDirective.prototype, "cksTranslate", void 0);
+    __decorate([
+        Input()
+    ], CksTranslateDirective.prototype, "translateValues", void 0);
+    CksTranslateDirective = __decorate([
+        Directive({
+            selector: '[cksTranslate]'
+        }),
+        __param(2, Optional())
+    ], CksTranslateDirective);
+    return CksTranslateDirective;
+}());
+
 var CKS_COMPONENTS = [CksDynamicComponent, CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent, CksTopbarComponent];
-var CKS_DIRECTIVES = [CksActiveLanguageDirective];
+var CKS_DIRECTIVES = [CksActiveLanguageDirective, CksTranslateDirective];
 var CKS_LAYOUTS = [CksMainWithHeadComponent, CksMainWithSideAndHeadComponent];
 
 var CksMissingTranslationHandler = /** @class */ (function () {
@@ -657,5 +717,5 @@ var CksSubscriptionManager = /** @class */ (function () {
  * Generated bundle index. Do not edit.
  */
 
-export { CksConfigService, CksDynamicComponent, CksLanguageService, CksMainWithHeadComponent, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, missingTranslationHandler, translatePartialLoader, CksMissingTranslationHandler as ɵa, CKS_COMPONENTS as ɵb, CKS_DIRECTIVES as ɵc, CKS_LAYOUTS as ɵd, CksActiveLanguageDirective as ɵe };
+export { CksConfigService, CksDynamicComponent, CksLanguageService, CksMainWithHeadComponent, CksMainWithSideAndHeadComponent, CksModuleConfig, CksNavbarComponent, CksNavbarService, CksPageRibbonComponent, CksProfileInfo, CksProfileService, CksRouteService, CksSidebarComponent, CksSidebarService, CksSubscriptionManager, CksTopbarComponent, NgChakansModule, missingTranslationHandler, translatePartialLoader, CksMissingTranslationHandler as ɵa, CKS_COMPONENTS as ɵb, CKS_DIRECTIVES as ɵc, CKS_LAYOUTS as ɵd, CksActiveLanguageDirective as ɵe, CksTranslateDirective as ɵf };
 //# sourceMappingURL=ng-chakans.js.map

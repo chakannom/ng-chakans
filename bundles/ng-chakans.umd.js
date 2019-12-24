@@ -679,8 +679,68 @@
         return CksActiveLanguageDirective;
     }());
 
+    /**
+     * A wrapper directive on top of the translate pipe as the inbuilt translate directive from ngx-translate is too verbose and buggy
+     */
+    var CksTranslateDirective = /** @class */ (function () {
+        function CksTranslateDirective(configService, el, translateService) {
+            this.configService = configService;
+            this.el = el;
+            this.translateService = translateService;
+            this.directiveDestroyed = new rxjs.Subject();
+        }
+        CksTranslateDirective.prototype.ngOnInit = function () {
+            var _this = this;
+            var enabled = this.configService.getConfig().i18nEnabled;
+            if (enabled) {
+                this.translateService.onLangChange.pipe(operators.takeUntil(this.directiveDestroyed)).subscribe(function () {
+                    _this.getTranslation();
+                });
+            }
+        };
+        CksTranslateDirective.prototype.ngOnChanges = function () {
+            var enabled = this.configService.getConfig().i18nEnabled;
+            if (enabled) {
+                this.getTranslation();
+            }
+        };
+        CksTranslateDirective.prototype.ngOnDestroy = function () {
+            this.directiveDestroyed.next();
+            this.directiveDestroyed.complete();
+        };
+        CksTranslateDirective.prototype.getTranslation = function () {
+            var _this = this;
+            this.translateService
+                .get(this.cksTranslate, this.translateValues)
+                .pipe(operators.takeUntil(this.directiveDestroyed))
+                .subscribe(function (value) {
+                _this.el.nativeElement.innerHTML = value;
+            }, function () {
+                return _this.configService.getConfig().noi18nMessage + "[" + _this.cksTranslate + "]";
+            });
+        };
+        CksTranslateDirective.ctorParameters = function () { return [
+            { type: CksConfigService },
+            { type: core.ElementRef },
+            { type: core$1.TranslateService, decorators: [{ type: core.Optional }] }
+        ]; };
+        __decorate([
+            core.Input()
+        ], CksTranslateDirective.prototype, "cksTranslate", void 0);
+        __decorate([
+            core.Input()
+        ], CksTranslateDirective.prototype, "translateValues", void 0);
+        CksTranslateDirective = __decorate([
+            core.Directive({
+                selector: '[cksTranslate]'
+            }),
+            __param(2, core.Optional())
+        ], CksTranslateDirective);
+        return CksTranslateDirective;
+    }());
+
     var CKS_COMPONENTS = [CksDynamicComponent, CksNavbarComponent, CksPageRibbonComponent, CksSidebarComponent, CksTopbarComponent];
-    var CKS_DIRECTIVES = [CksActiveLanguageDirective];
+    var CKS_DIRECTIVES = [CksActiveLanguageDirective, CksTranslateDirective];
     var CKS_LAYOUTS = [CksMainWithHeadComponent, CksMainWithSideAndHeadComponent];
 
     var CksMissingTranslationHandler = /** @class */ (function () {
@@ -848,6 +908,7 @@
     exports.ɵc = CKS_DIRECTIVES;
     exports.ɵd = CKS_LAYOUTS;
     exports.ɵe = CksActiveLanguageDirective;
+    exports.ɵf = CksTranslateDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
