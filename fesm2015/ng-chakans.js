@@ -564,8 +564,8 @@ NgChakansModule = NgChakansModule_1 = __decorate([
         exports: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS, TranslateModule]
     })
 ], NgChakansModule);
-function translatePartialLoader(http, prefix = 'i18n/', suffix = '.json?buildTimestamp=0') {
-    return new TranslateHttpLoader(http, prefix, suffix);
+function translatePartialLoader(http) {
+    return new TranslateHttpLoader(http, 'i18n/', `.json?buildTimestamp=${process.env.BUILD_TIMESTAMP}`);
 }
 function missingTranslationHandler(configService) {
     return new CksMissingTranslationHandler(configService);

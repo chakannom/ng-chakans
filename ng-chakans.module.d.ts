@@ -8,5 +8,5 @@ export declare class NgChakansModule {
     static forRoot(moduleConfig: CksModuleConfig): ModuleWithProviders;
     static forChild(moduleConfig: CksModuleConfig): ModuleWithProviders;
 }
-export declare function translatePartialLoader(http: HttpClient, prefix?: string, suffix?: string): TranslateHttpLoader;
+export declare function translatePartialLoader(http: HttpClient): TranslateHttpLoader;
 export declare function missingTranslationHandler(configService: CksConfigService): CksMissingTranslationHandler;

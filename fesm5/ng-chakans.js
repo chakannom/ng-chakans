@@ -597,10 +597,8 @@ var NgChakansModule = /** @class */ (function () {
     ], NgChakansModule);
     return NgChakansModule;
 }());
-function translatePartialLoader(http, prefix, suffix) {
-    if (prefix === void 0) { prefix = 'i18n/'; }
-    if (suffix === void 0) { suffix = '.json?buildTimestamp=0'; }
-    return new TranslateHttpLoader(http, prefix, suffix);
+function translatePartialLoader(http) {
+    return new TranslateHttpLoader(http, 'i18n/', ".json?buildTimestamp=" + process.env.BUILD_TIMESTAMP);
 }
 function missingTranslationHandler(configService) {
     return new CksMissingTranslationHandler(configService);
