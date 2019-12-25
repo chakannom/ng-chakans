@@ -61,8 +61,8 @@ export class NgChakansModule {
   }
 }
 
-export function translatePartialLoader(http: HttpClient, prefix = 'i18n/', suffix = '.json?buildTimestamp=0') {
-  return new TranslateHttpLoader(http, prefix, suffix);
+export function translatePartialLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'i18n/', `.json?buildTimestamp=${process.env.BUILD_TIMESTAMP}`);
 }
 
 export function missingTranslationHandler(configService: CksConfigService) {
