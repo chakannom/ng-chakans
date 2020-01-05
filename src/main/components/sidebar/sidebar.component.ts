@@ -25,6 +25,11 @@ import { CksRouteService } from '../../services/route.service';
 export class CksSidebarComponent {
   @HostBinding('class.cks-sidebar') _header = true;
 
+  constructor() {}
+
+  toggleDropdown() {}
+
+  /*
   @Input() headerTemplate: TemplateRef<any>;
   @Input() contentTemplate: TemplateRef<any>;
   @Input() footerTemplate: TemplateRef<any>;
@@ -62,4 +67,5 @@ export class CksSidebarComponent {
     }
     return true;
   }
+  */
 }
