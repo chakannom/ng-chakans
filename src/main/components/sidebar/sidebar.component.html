@@ -23,8 +23,8 @@
             Dashboard
         </a>
     </li>
-    <li class="nav-dropdown">
-        <a class="nav-dropdown-toggle">
+    <li class="nav-dropdown" ngbDropdown>
+        <a class="nav-dropdown-toggle" id="sidebarDropdown1" ngbDropdownToggle>
             <fa-layers [fixedWidth]="true" class="cks-sidebar-nav-icon">
                 <fa-icon icon="tachometer-alt"></fa-icon>
             </fa-layers>
@@ -33,6 +33,20 @@
                 <fa-icon icon="angle-left"></fa-icon>
             </fa-layers>
         </a>
+        <ul class="nav-dropdown-items" aria-labelledby="sidebarDropdown1" ngbDropdownMenu>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <span class="cks-sidebar-nav-icon"></span>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <span class="cks-sidebar-nav-icon"></span>
+                    Dashboard
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="nav-dropdown cks-show">
         <a class="nav-dropdown-toggle" (click)="toggleDropdown()">
