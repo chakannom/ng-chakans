@@ -23,17 +23,17 @@
             Dashboard
         </a>
     </li>
-    <li class="nav-dropdown" ngbDropdown>
-        <a class="nav-dropdown-toggle" id="sidebarDropdown1" ngbDropdownToggle>
+    <li class="nav-dropdown" cksSidebarDropdown>
+        <a class="nav-dropdown-toggle" cksSidebarDropdownToggle>
             <fa-layers [fixedWidth]="true" class="cks-sidebar-nav-icon">
                 <fa-icon icon="tachometer-alt"></fa-icon>
             </fa-layers>
             Dashboard
-            <fa-layers [fixedWidth]="true" class="ml-auto">
+            <fa-layers [fixedWidth]="true" class="ml-auto nav-dropdown-toggle-state">
                 <fa-icon icon="angle-left"></fa-icon>
             </fa-layers>
         </a>
-        <ul class="nav-dropdown-items" aria-labelledby="sidebarDropdown1" ngbDropdownMenu>
+        <ul class="nav-dropdown-items">
             <li class="nav-item">
                 <a class="nav-link">
                     <span class="cks-sidebar-nav-icon"></span>
@@ -48,14 +48,14 @@
             </li>
         </ul>
     </li>
-    <li class="nav-dropdown cks-show">
-        <a class="nav-dropdown-toggle" (click)="toggleDropdown()">
+    <li class="nav-dropdown" cksSidebarDropdown>
+        <a class="nav-dropdown-toggle" cksSidebarDropdownToggle>
             <fa-layers [fixedWidth]="true" class="cks-sidebar-nav-icon">
                 <fa-icon icon="tachometer-alt"></fa-icon>
             </fa-layers>
             Dashboard
-            <fa-layers [fixedWidth]="true" class="ml-auto">
-                <fa-icon icon="angle-down"></fa-icon>
+            <fa-layers [fixedWidth]="true" class="ml-auto nav-dropdown-toggle-state">
+                <fa-icon icon="angle-left"></fa-icon>
             </fa-layers>
         </a>
         <ul class="nav-dropdown-items">

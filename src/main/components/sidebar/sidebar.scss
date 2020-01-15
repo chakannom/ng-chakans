@@ -63,6 +63,10 @@ Sidebar styles
     padding: 0.8445rem 1rem;
     color: rgba(255, 255, 255, 0.8);
     white-space: nowrap;
+    &.active {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #343a40;
+    }
   }
   a.nav-dropdown-toggle,
   a.nav-link {
@@ -74,32 +78,23 @@ Sidebar styles
     }
   }
   .nav-dropdown-items {
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
-    will-change: auto !important;
-    transform: none !important;
-    display: block;
-    z-index: auto;
     max-height: 0;
     padding: 0;
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    float: none;
-    min-width: 0;
     overflow-y: hidden;
     transition: max-height 0.25s ease-in-out;
   }
   .nav-dropdown {
-    &.show {
-      background: rgba(0, 0, 0, 0.2);
-      .nav-dropdown-items {
-        max-height: 1000px;
-      }
-    }
+    position: relative;
+    transition: background-color 0.25s ease-in-out;
     &.cks-show {
       background: rgba(0, 0, 0, 0.2);
+      .nav-dropdown-toggle {
+        background: rgb(73, 78, 84);
+        color: #fff;
+      }
+      .nav-dropdown-toggle-state svg {
+        transform: rotate(270deg);
+      }
       .nav-dropdown-items {
         max-height: 1000px;
       }

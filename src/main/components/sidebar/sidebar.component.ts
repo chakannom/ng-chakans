@@ -27,8 +27,6 @@ export class CksSidebarComponent {
 
   constructor() {}
 
-  toggleDropdown() {}
-
   /*
   @Input() headerTemplate: TemplateRef<any>;
   @Input() contentTemplate: TemplateRef<any>;
