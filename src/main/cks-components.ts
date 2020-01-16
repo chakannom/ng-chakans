@@ -4,7 +4,7 @@ import { CksPageRibbonComponent } from './components/profiles/page-ribbon.compon
 import { CksSidebarComponent } from './components/sidebar/sidebar.component';
 import { CksTopbarComponent } from './components/topbar/topbar.component';
 import { CksActiveLanguageDirective } from './directives/active-language.directive';
-import { CksSidebarDropdownDirective, CksSidebarDropdownToggleDirective } from './directives/sidebar.directive';
+import { CksSidebarMenuDirective, CksSidebarDropdownDirective, CksSidebarDropdownToggleDirective } from './directives/sidebar.directive';
 import { CksTranslateDirective } from './directives/translate.directive';
 import { CksMainWithHeadComponent } from './layouts/main/with-head/main-with-head.component';
 import { CksMainWithSideAndHeadComponent } from './layouts/main/with-side-and-head/main-with-side-and-head.component';
@@ -13,6 +13,7 @@ export const CKS_COMPONENTS = [CksDynamicComponent, CksNavbarComponent, CksPageR
 
 export const CKS_DIRECTIVES = [
   CksActiveLanguageDirective,
+  CksSidebarMenuDirective,
   CksSidebarDropdownDirective,
   CksSidebarDropdownToggleDirective,
   CksTranslateDirective
