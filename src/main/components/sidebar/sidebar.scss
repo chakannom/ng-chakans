@@ -45,6 +45,7 @@ Sidebar styles
 }
 .cks-sidebar-nav {
   position: relative;
+  flex-wrap: nowrap;
   .nav-item {
     width: inherit;
   }

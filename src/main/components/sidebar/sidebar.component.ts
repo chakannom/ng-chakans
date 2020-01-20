@@ -14,6 +14,7 @@
  limitations under the License.
  */
 import { Component, Input, TemplateRef, HostBinding } from '@angular/core';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { Observable } from 'rxjs';
 import { CksSidebarService } from './sidebar.service';
 import { CksRouteService } from '../../services/route.service';
@@ -24,6 +25,11 @@ import { CksRouteService } from '../../services/route.service';
 })
 export class CksSidebarComponent {
   @HostBinding('class.cks-sidebar') _header = true;
+
+  psConfig: PerfectScrollbarConfigInterface = {
+    suppressScrollX: true,
+    wheelPropagation: false
+  };
 
   constructor() {}
 

@@ -8,6 +8,7 @@ eg $input-color: red;
 @import 'bootstrap-variables';
 // Import Bootstrap source files from node_modules
 @import '~bootstrap/scss/bootstrap';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
 @import '../../../main/components/navbar/navbar';
 @import '../../../main/components/sidebar/sidebar';
 @import '../../../main/components/topbar/topbar';
