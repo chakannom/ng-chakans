@@ -29,6 +29,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-regular-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "ngx-perfect-scrollbar": "^8.0.0",
     "rxjs": "^6.5.3"
   },
   "devDependencies": {
@@ -75,6 +76,7 @@
     "lint-staged": "9.4.3",
     "merge-jsons-webpack-plugin": "1.0.20",
     "ng-packagr": "5.7.1",
+    "ngx-perfect-scrollbar": "8.0.0",
     "postcss-loader": "3.0.0",
     "prettier": "1.19.1",
     "reflect-metadata": "0.1.13",

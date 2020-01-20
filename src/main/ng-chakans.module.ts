@@ -25,19 +25,20 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { CksModuleConfig } from './config';
 import { CksConfigService } from './config.service';
 import { CksDynamicComponent } from './components/dynamic/dynamic.component';
 import { CksMainWithHeadComponent } from './layouts/main/with-head/main-with-head.component';
 import { CksMainWithSideAndHeadComponent } from './layouts/main/with-side-and-head/main-with-side-and-head.component';
-import { CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS } from './cks-components';
+import { CKS_COMPONENTS, CKS_DIRECTIVES, CKS_LAYOUTS, CKS_DIRECTIVES_FOR_CKS_COMPONENTS } from './cks-components';
 import { CksMissingTranslationHandler } from './config/cks-missing-translation.config';
 
 @NgModule({
-  imports: [CommonModule, FontAwesomeModule, NgbModule, RouterModule, TranslateModule],
-  declarations: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS],
+  imports: [CommonModule, FontAwesomeModule, NgbModule, RouterModule, TranslateModule, PerfectScrollbarModule],
+  declarations: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS, ...CKS_DIRECTIVES_FOR_CKS_COMPONENTS],
   entryComponents: [CksDynamicComponent, CksMainWithHeadComponent, CksMainWithSideAndHeadComponent],
-  exports: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS, TranslateModule]
+  exports: [...CKS_COMPONENTS, ...CKS_DIRECTIVES, ...CKS_LAYOUTS, ...CKS_DIRECTIVES_FOR_CKS_COMPONENTS, TranslateModule]
 })
 export class NgChakansModule {
   static forRoot(moduleConfig: CksModuleConfig): ModuleWithProviders {
