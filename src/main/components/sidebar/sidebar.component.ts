@@ -24,6 +24,8 @@ import { CksRouteService } from '../../services/route.service';
   templateUrl: './sidebar.component.html'
 })
 export class CksSidebarComponent {
+  @Input() brand: any;
+
   @HostBinding('class.cks-sidebar') _header = true;
 
   psConfig: PerfectScrollbarConfigInterface = {

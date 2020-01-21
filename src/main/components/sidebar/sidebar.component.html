@@ -1,7 +1,7 @@
 <div class="cks-sidebar-brand">
     <span class="cks-sidebar-logo-img"></span>
-    <span class="cks-sidebar-brand-text">Gooroom</span>
-    <span class="cks-sidebar-version">vUNKNOWN</span>
+    <span class="cks-sidebar-brand-text">{{ !brand.title.translateKey ? brand.title.label : (brand.title.translateKey | translate) }}</span>
+    <span class="cks-sidebar-version" *ngIf="brand.version">{{ brand.version }}</span>
 </div>
 <ul class="cks-sidebar-nav nav flex-column" cksSidebarMenu [perfectScrollbar]="psConfig">
     <li class="nav-item">

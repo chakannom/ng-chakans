@@ -4,11 +4,20 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: '[cks-sidebar]',
   template: `
-    <cks-sidebar></cks-sidebar>
+    <cks-sidebar [brand]="brand"></cks-sidebar>
   `
 })
 export class SidebarComponent implements OnInit {
+  brand: any;
+
   constructor(translate: TranslateService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.brand = {
+      title: {
+        label: 'Gooroom'
+      },
+      version: 'vUNKNOWN'
+    };
+  }
 }
