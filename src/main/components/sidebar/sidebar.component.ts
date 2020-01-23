@@ -25,6 +25,7 @@ import { CksRouteService } from '../../services/route.service';
 })
 export class CksSidebarComponent {
   @Input() brand: any;
+  @Input() menuItems: any[];
 
   @HostBinding('class.cks-sidebar') _header = true;
 
